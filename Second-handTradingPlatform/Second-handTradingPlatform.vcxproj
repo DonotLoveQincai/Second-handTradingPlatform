@@ -124,6 +124,14 @@
       <QtMocDir>$(Configuration)</QtMocDir>
       <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
     </QtMoc>
+    <QtRcc>
+      <InitFuncName>resources</InitFuncName>
+      <Compression>default</Compression>
+      <NoZstd>true</NoZstd>
+      <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
+      <QtRccDir>$(Configuration)</QtRccDir>
+      <QtRccFileName>qrc_%(Filename).cpp</QtRccFileName>
+    </QtRcc>
     <QtUic>
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
       <QtUicDir>$(ProjectDir)</QtUicDir>
@@ -179,6 +187,14 @@
       <QtMocDir>$(Configuration)</QtMocDir>
       <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
     </QtMoc>
+    <QtRcc>
+      <InitFuncName>resources</InitFuncName>
+      <Compression>default</Compression>
+      <NoZstd>true</NoZstd>
+      <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
+      <QtRccDir>$(Configuration)</QtRccDir>
+      <QtRccFileName>qrc_%(Filename).cpp</QtRccFileName>
+    </QtRcc>
     <QtUic>
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
       <QtUicDir>$(ProjectDir)</QtUicDir>
@@ -191,11 +207,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="services\auth_service.h" />
+    <ClInclude Include="core\common\constants.h" />
     <ClInclude Include="core\repository\i_order_repository.h" />
     <ClInclude Include="core\repository\i_product_repository.h" />
     <ClInclude Include="core\repository\i_trade_log_repository.h" />
     <ClInclude Include="core\repository\i_user_repository.h" />
     <QtMoc Include="ui\mainwindow.h" />
+    <ClInclude Include="core\common\opresult.h" />
     <ClInclude Include="core\entity\order.h" />
     <ClInclude Include="data\order_dao.h" />
     <ClInclude Include="services\order_service.h" />
@@ -228,6 +246,10 @@
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\mainwindow.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sql\001_init.sql" />
+    <QtRcc Include="ui\resources\resources.qrc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(QtMsBuild)\qt.targets" Condition="Exists('$(QtMsBuild)\qt.targets')" />
