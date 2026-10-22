@@ -47,6 +47,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="data\db_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -59,6 +62,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\common\constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="data\db_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\repository\i_order_repository.h">

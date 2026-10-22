@@ -202,12 +202,14 @@
     </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="data\db_manager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ui\mainwindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="services\auth_service.h" />
     <ClInclude Include="core\common\constants.h" />
+    <ClInclude Include="data\db_manager.h" />
     <ClInclude Include="core\repository\i_order_repository.h" />
     <ClInclude Include="core\repository\i_product_repository.h" />
     <ClInclude Include="core\repository\i_trade_log_repository.h" />
