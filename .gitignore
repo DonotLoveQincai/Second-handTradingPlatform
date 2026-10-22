@@ -25,8 +25,13 @@ qrc_*.cpp
 .vs/
 .qtcreator/
 
-# ---- 运行时数据 ----
-data/
+# ---- 运行时数据（只忽略 exe 旁边生成的那份，别把源码里的 data/ 目录一起忽略了）----
+/Second-handTradingPlatform/data/app.db
+/Second-handTradingPlatform/data/app.db-journal
+/Second-handTradingPlatform/data/app.db-wal
+/Second-handTradingPlatform/data/app.db-shm
+/Second-handTradingPlatform/data/images/
+/Second-handTradingPlatform/logs/
 logs/
 *.db
 *.db-journal
