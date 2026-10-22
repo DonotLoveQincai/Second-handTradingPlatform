@@ -40,14 +40,68 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mainwindow.cpp">
+    <ClCompile Include="ui\mainwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="mainwindow.h">
+    <ClInclude Include="services\auth_service.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\repository\i_order_repository.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\repository\i_product_repository.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\repository\i_trade_log_repository.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\repository\i_user_repository.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <QtMoc Include="ui\mainwindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <ClInclude Include="core\entity\order.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="data\order_dao.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="services\order_service.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\entity\product.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="data\product_dao.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="services\product_service.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\session.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\entity\trade_log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="data\trade_log_dao.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="services\trade_service.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="services\trade_state_machine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\entity\user.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="data\user_dao.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -58,7 +112,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="mainwindow.ui">
+    <QtUic Include="ui\mainwindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

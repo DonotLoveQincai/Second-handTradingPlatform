@@ -1,22 +1,28 @@
-QT += widgets
+QT       += core gui widgets sql
+CONFIG   += c++17
+TEMPLATE  = app
+TARGET    = Second-handTradingPlatform
 
-CONFIG += c++17
+# 让 #include "core/entity/product.h" 这种写法能找到文件
+INCLUDEPATH += $$PWD
 
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+# MSVC 下强制按 UTF-8 编译，否则中文字符串会乱码
+msvc {
+    QMAKE_CXXFLAGS += /utf-8
+}
 
-SOURCES += \
-    main.cpp \
-    mainwindow.cpp
+SOURCES += main.cpp
 
-HEADERS += \
-    mainwindow.h
+include(core/core.pri)
+include(data/data.pri)
+include(services/services.pri)
+include(ui/ui.pri)
 
-FORMS += \
-    mainwindow.ui
+RESOURCES += ui/resources/resources.qrc
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+# 输出目录固定，避免 VS 和 Creator 各生成一份
+CONFIG(debug, debug|release) {
+    DESTDIR = $$PWD/debug
+} else {
+    DESTDIR = $$PWD/release
+}
