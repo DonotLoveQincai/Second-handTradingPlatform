@@ -8,6 +8,18 @@
 
 ---
 
+## 这本里没有的东西去哪找
+
+| 你要找的 | 看哪里 |
+|---|---|
+| 装 Qt / VS、各种编译报错、Git 怎么配置 | `docs/02-环境与协作手册.md` |
+| 表结构、字段名、接口签名、状态机表（**权威版本，以它为准**） | `docs/01-契约.md` |
+| 第 0 周集体要干的事、D 的施工进度 | `docs/tasks/D-平台底座.md` |
+
+三份文档都在同一个仓库里，路径相对仓库根目录。有冲突时**以 `01-契约.md` 为准**，但改契约要先在群里说。
+
+---
+
 ## 你要改的文件（只有这些）
 
 ```
@@ -28,7 +40,79 @@ ui/pages/order/order_detail_dialog.h / .cpp
 
 ---
 
+## ⚠️ 写第一个 `.cpp` 之前先看这条
+
+D 已经把主窗口挪进 `ui/`，工程现在能编过。你自己**新增 `.cpp` / `.h` 之后，必须**在 VS 里做一次：
+
+> `扩展` → `Qt VS Tools` → `Open Qt Project File (.pro)` → 选 `Second-handTradingPlatform.pro` → 提示转换时点「是」
+
+不做这一步，一定会报：
+
+```
+LNK2019 无法解析的外部符号 "public: __cdecl ProductDao::insert(...)"，函数 ... 中引用了该符号
+LNK1120 1 个无法解析的外部命令
+```
+
+### 为什么会这样
+
+`.pro` 里 `SOURCES` 只写了 `main.cpp`，其余文件全靠四个 `.pri` 用 `$$files()` **通配目录**（`core.pri` 管 `core/`、`data.pri` 管 `data/`、`services.pri` 管 `services/`、`ui.pri` 管 `ui/`）。
+
+通配符只在 **qmake 跑的那一刻**才扫目录。VS 编译用的是 qmake 生成的 `.vcxproj` —— 一份**文件清单快照**。新文件没重新跑 qmake，就永远进不去。
+
+所以这个错跟"代码写错了"没关系，是**你的文件根本没被编译**。
+
+### `LNK2019` 的三条排查顺序（背下来，以后自己能查）
+
+1. **实现真写了吗** —— 打开那个 `.cpp`，不是空的
+2. **文件进工程了吗** —— VS「解决方案资源管理器」里能看到它
+3. **进了工程但没重新生成** —— 重新走一次 `Open Qt Project File (.pro)`
+
+90% 是第 3 条。
+
+### 你的文件该放哪个目录（放错目录也是 `LNK2019`）
+
+| 你写的东西 | 必须放在 | 通配它的 `.pri` |
+|---|---|---|
+| 实体 struct、接口 | `core/entity/`、`core/repository/` | `core/core.pri` |
+| DAO | `data/` | `data/data.pri` |
+| Service | `services/` | `services/services.pri` |
+| 页面、对话框 | `ui/pages/<你的模块名>/` | `ui/ui.pri` |
+
+**不要动** `ui/mainwindow.h`、`ui/mainwindow.cpp`（归 D）；**不要**自己在工程根目录建 `.cpp` —— 根目录只有 `main.cpp` 被显式写进 `SOURCES`，放那里必定编不进去。
+
+## 开工前先看：这次施工真实踩过的九个坑
+
+按"从空工程到能跑起来"的顺序排的，你迟早会撞上一半。每条都写清楚**报错原文**，方便直接搜。
+
+| # | 现象 | 真正的原因 | 怎么办 |
+|---|---|---|---|
+| 1 | `LNK2019 无法解析的外部符号` + `LNK1120` | 新增的 `.cpp` 没进工程：`.vcxproj` 是 qmake 生成的快照，`.pri` 的通配只在生成那一刻扫目录 | 走一次 `扩展 → Qt VS Tools → Open Qt Project File (.pro)`，再 `Ctrl+Shift+B` |
+| 2 | `C4828 字符在当前源字符集中无效` / `C2001 常量中有换行符` | 文件存成了 GBK，而 `.pro` 里开了 `/utf-8` | 仓库根已有 `.editorconfig`，新建文件自动 UTF-8；老文件 `文件 → 高级保存选项` → **UTF-8（无签名）** |
+| 3 | `C2039 "toVariant": 不是 "QVariant" 的成员` | 抄来的代码本身就有错，`QVariant` 没有 `toVariant()` | 用 `q.value(n).toString()` / `.toInt()`。**文档里的代码也可能写错** —— 报错说某方法不存在，先查这个方法到底有没有，别急着怀疑自己抄漏了 |
+| 4 | 编译 0 错误，但 `F5` / 双击 exe 毫无反应，输出面板一行都没有 | `debug\` 缺 `Qt6Sqld.dll` 和 `sqldrivers\`，程序在加载 Qt 库那一步就退了 | `windeployqt --debug --no-translations <debug 里的 exe>` |
+| 5 | `QSQLITE driver not loaded` | 同上，SQLite 插件没在 exe 旁边 | 同上 |
+| 6 | `qDebug()` 写了，输出面板却什么都没有 | 那行写在了 `return QApplication::exec();` **之后**，`exec()` 阻塞到最后一个窗口关闭，永远走不到；编译器还会警告 `C4702: 不可访问的代码` | 放在 `QApplication a(argc, argv);` 之后、`exec()` 之前；输出看 `输出 → 调试` 面板，不是 `生成` |
+| 7 | 自己新建的 `data/xxx_dao.cpp` 在 `git status` 里根本不出现 | `.gitignore` 里写过 `data/`，它是通配，把源码目录也一起忽略了 | 已改成 `/Second-handTradingPlatform/data/app.db` 这种带完整路径的写法；自检 `git status --short -uall` |
+| 8 | `git push` 报 `Recv failure: Connection was reset` / `Connection timed out` | 网络到 GitHub 被中断，git 没走代理 | `git config --global http.proxy http://127.0.0.1:7897`（端口看自己代理软件），`https.proxy` 同样一行；代理关了要 `--unset` 撤销 |
+| 9 | 提交完发现漏了文件（比如整个 `docs/`） | `git add` 按**当前所在目录**算，在子目录里 `git add .` 只收那棵子树 | 回仓库根再 `git add -A`，或者写明确路径；提交前用 `git status` 看 `Changes to be committed` 里齐不齐 |
+
+#### 提交前 30 秒自检
+
+```bash
+git status --short -uall     # 你新建的文件在里面吗？
+git diff --cached --stat     # 这次到底收了几个文件，数量对不对
+```
+
+#### 三条硬规矩
+
+1. **动代码前**：`git checkout develop` → `git pull` → `git checkout feature/你的分支` → `git merge develop`
+2. **新建文件后**：立刻走一次 `Open Qt Project File (.pro)`，别等编译报错才想起来
+3. **收工前**：`F5` 跑一遍、点几下界面，确认不是"编译过了但界面是空的"
+
+---
+
 ## 任务清单
+
 
 | # | 任务 | 周 | 前置 | 完成 |
 |---|---|---|---|---|
@@ -369,6 +453,91 @@ for (const QString& action : TradeStateMachine::actionsFor(order.status)) {
 - 和 A 联调：下单后商品消失、取消后回来
 - 和 C 联调：详情页按钮点了状态真的变、日志表多一条
 - 修自己的 bug
+
+---
+
+## 提交与提 PR（每次都要按这个来）
+
+### 提交信息怎么写
+
+固定格式：`<类型>:<说明>`
+
+| 类型 | 什么时候用 | 例子 |
+|---|---|---|
+| `feat` | 新增功能 | `feat:商品上架与下架` |
+| `fix` | 修 bug | `fix:取消订单后商品没回到在售` |
+| `docs` | 只改文档 | `docs:补充检索页说明` |
+| `test` | 只改测试 | 本项目基本用不到 |
+
+规则：用**英文冒号**、冒号后**不空格**、30 字以内、不加句号、直接写中文。
+
+写"做了什么"，不要写"修改了 xxx.cpp"。
+
+### 每天收工三条命令
+
+```bash
+git add -A
+git commit -m "feat:买家登记与订单记录"
+git push -u origin feature/B-order          # 第一次带 -u，以后直接 git push
+```
+
+**一天至少提交一次。** 别攒到最后一天 —— 答辩时老师会看提交记录，一天一个巨型提交看着就像临时抄的。
+
+### 提 PR 的完整步骤
+
+1. 打开 GitHub 仓库页面，顶部会出现黄条 `Compare & pull request`，点它
+   （没有黄条就点 `Pull requests` → `New pull request`）
+2. 确认方向：`base: develop` ← `compare: feature/B-order`
+   **base 一定要是 develop，绝不是 main**
+3. 标题照提交格式写，例如 `feat:商品域完成`
+4. 描述写两三句：做了什么、怎么测的、有什么没做完
+5. 右边 `Reviewers` 选 **D**，然后 `Create pull request`
+6. 等 D approve。他要你改，就在本地改完再 `git push`，PR 会自动更新
+7. 他 approve 后你自己点 `Merge pull request` → `Confirm merge`
+   （不要用 `Squash and merge`，否则你们的提交记录会被压成一条，答辩证据就没了）
+8. 合完点 `Delete branch` 删掉远端分支（本地分支留着，你还要继续用）
+
+### 合完之后同步一次
+
+```bash
+git checkout develop
+git pull
+git checkout feature/B-order
+git merge develop          # 把别人的改动并进来，早发现冲突早解决
+```
+
+### 三条禁令
+
+- **不要** `git push origin develop` 或 `git push origin main` —— 分支保护会直接拒绝，D 也没权限给你开
+- **不要** `git push -f` —— 会把别人的提交抹掉
+- **不要**在别人的分支上提交
+
+### 冲突了怎么办
+
+```bash
+git pull --rebase origin develop
+```
+
+VS 会在「解决方案资源管理器」里把冲突文件标红。打开它，手动留下要的内容，把 `<<<<<<<`、`=======`、`>>>>>>>` 这几行删干净，然后：
+
+```bash
+git add 冲突的文件
+git rebase --continue
+git push
+```
+
+搞不定就在群里喊 D，**别自己硬删别人的代码**。
+
+### 如果冲突的是 `.vcxproj` / `.vcxproj.filters`
+
+这两个是 Qt VS Tools 从 `.pro` **自动生成**的文件，不是手写的，所以不用一行行去合：
+
+1. 随便选一边（`Accept Current Change` 或 `Accept Incoming Change` 都行）
+2. 保存，然后在 VS 里再走一次：`扩展` → `Qt VS Tools` → `Open Qt Project File (.pro)` → 转换时点「是」
+3. 这一步会**按磁盘上的文件重新生成**整份工程文件，之前选对选错都无所谓
+4. `git add` 这两个文件，`git rebase --continue`
+
+一句话记住：**`.pro` 和目录结构才是真相，`.vcxproj` 只是它生成出来的东西。**
 
 ---
 

@@ -1,0 +1,18 @@
+# 作用：让 VS 新建/保存的源文件一律是 UTF-8，避免 C4828 / C2001 那类编码报错。
+# VS 2022 会自动读这个文件，不需要任何插件。
+root = true
+
+[*]
+charset = utf-8
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+# 文档里的行尾空格偶尔是有意的（Markdown 换行），不要自动删
+[*.md]
+trim_trailing_whitespace = false
+
+# 工程文件是 Qt VS Tools 生成的，缩进按它的习惯
+[*.{sln,vcxproj,filters,pro,pri}]
+indent_size = 2

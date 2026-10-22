@@ -1,0 +1,3 @@
+HEADERS += $$files($$PWD/*.h, true)
+SOURCES += $$files($$PWD/*.cpp, true)
+FORMS   += $$files($$PWD/*.ui, true)
