@@ -205,11 +205,14 @@
     <ClCompile Include="data\db_manager.cpp" />
     <ClCompile Include="data\order_dao.cpp" />
     <ClCompile Include="data\user_dao.cpp" />
+    <ClCompile Include="services\auth_service.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ui\mainwindow.cpp" />
+    <ClCompile Include="ui\pages\auth\login_dialog.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="services\auth_service.h" />
+    <ClInclude Include="ui\pages\auth\login_dialog.h" />
     <ClInclude Include="core\common\constants.h" />
     <ClInclude Include="data\db_manager.h" />
     <ClInclude Include="core\repository\i_order_repository.h" />
@@ -217,6 +220,8 @@
     <ClInclude Include="core\repository\i_trade_log_repository.h" />
     <ClInclude Include="core\repository\i_user_repository.h" />
     <QtMoc Include="ui\mainwindow.h" />
+    <QtMoc Include="services\auth_service.h" />
+    <QtMoc Include="ui\pages\auth\login_dialog.h" />
     <ClInclude Include="core\common\opresult.h" />
     <ClInclude Include="core\entity\order.h" />
     <ClInclude Include="data\order_dao.h" />

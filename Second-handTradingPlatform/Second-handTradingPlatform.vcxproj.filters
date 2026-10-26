@@ -62,9 +62,18 @@
     <ClCompile Include="data\order_dao.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="services\auth_service.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\pages\auth\login_dialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="services\auth_service.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\pages\auth\login_dialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\common\constants.h">
