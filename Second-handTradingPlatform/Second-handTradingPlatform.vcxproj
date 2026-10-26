@@ -203,6 +203,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="data\db_manager.cpp" />
+    <ClCompile Include="data\order_dao.cpp" />
     <ClCompile Include="data\user_dao.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ui\mainwindow.cpp" />

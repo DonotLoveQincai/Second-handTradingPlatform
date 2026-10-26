@@ -59,6 +59,9 @@
     <ClCompile Include="data\user_dao.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="data\order_dao.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="services\auth_service.h">
