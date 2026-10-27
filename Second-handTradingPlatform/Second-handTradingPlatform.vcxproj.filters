@@ -47,7 +47,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="services\auth_service.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="data\db_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\pages\auth\login_dialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -56,26 +62,47 @@
     <ClCompile Include="ui\mainwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="data\user_dao.cpp">
+    <ClCompile Include="ui\pages\product\my_products_page.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="data\order_dao.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="services\auth_service.cpp">
+    <ClCompile Include="services\order_service.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ui\pages\auth\login_dialog.cpp">
+    <ClCompile Include="data\product_dao.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="services\product_service.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\pages\product\publish_dialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\pages\product\search_page.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="data\trade_log_dao.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\pages\trade\trade_log_page.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="services\trade_service.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="services\trade_state_machine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="data\user_dao.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="services\auth_service.h">
+    <QtMoc Include="services\auth_service.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ui\pages\auth\login_dialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    </QtMoc>
     <ClInclude Include="core\common\constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -94,7 +121,13 @@
     <ClInclude Include="core\repository\i_user_repository.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <QtMoc Include="ui\pages\auth\login_dialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
     <QtMoc Include="ui\mainwindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\pages\product\my_products_page.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <ClInclude Include="core\common\opresult.h">
@@ -106,18 +139,27 @@
     <ClInclude Include="data\order_dao.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="services\order_service.h">
+    <QtMoc Include="services\order_service.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </QtMoc>
     <ClInclude Include="core\entity\product.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="data\product_dao.h">
+    <QtMoc Include="data\product_dao.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="services\product_service.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <ClInclude Include="ui\pages\product\product_ui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="services\product_service.h">
+    <QtMoc Include="ui\pages\product\publish_dialog.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </QtMoc>
+    <QtMoc Include="ui\pages\product\search_page.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
     <ClInclude Include="core\session.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -127,9 +169,12 @@
     <ClInclude Include="data\trade_log_dao.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="services\trade_service.h">
+    <QtMoc Include="ui\pages\trade\trade_log_page.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </QtMoc>
+    <QtMoc Include="services\trade_service.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
     <ClInclude Include="services\trade_state_machine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -140,7 +185,14 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <CustomBuild Include="debug\moc_predefs.h.cbt">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="release\moc_predefs.h.cbt">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\mainwindow.ui">
       <Filter>Form Files</Filter>
