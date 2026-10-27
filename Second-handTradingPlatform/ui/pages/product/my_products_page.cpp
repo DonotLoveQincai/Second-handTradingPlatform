@@ -2,6 +2,7 @@
 
 #include <QHBoxLayout>
 #include <QHeaderView>
+#include <QLabel>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QTableWidget>
@@ -18,6 +19,9 @@ MyProductsPage::MyProductsPage(ProductService* service, QWidget* parent)
 {
     QVBoxLayout* root = new QVBoxLayout(this);
 
+    m_tip = new QLabel(this);
+    root->addWidget(m_tip);
+
     m_table = new QTableWidget(this);
     m_table->setColumnCount(6);
     m_table->setHorizontalHeaderLabels({"标题", "分类", "价格", "成色", "状态", "操作"});
@@ -32,6 +36,12 @@ MyProductsPage::MyProductsPage(ProductService* service, QWidget* parent)
 void MyProductsPage::refresh()
 {
     int uid = Session::instance().currentUser().id;
+    if (uid <= 0) {
+        m_table->setRowCount(0);
+        m_tip->setText("登录之后才能管自己的商品");
+        return;
+    }
+    m_tip->setText("双击一行可以改信息");
     QVector<Product> list = m_service->myProducts(uid);
 
     m_table->setRowCount(0);

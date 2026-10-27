@@ -4,6 +4,7 @@
 
 #include "core/entity/product.h"
 
+class QLabel;
 class QTableWidget;
 class ProductService;
 
@@ -22,4 +23,5 @@ private:
 
     ProductService* m_service = nullptr;
     QTableWidget* m_table = nullptr;
+    QLabel* m_tip = nullptr;
 };

@@ -12,6 +12,7 @@
 #include <QTableWidget>
 #include <QVBoxLayout>
 
+#include "core/session.h"
 #include "services/product_service.h"
 
 SearchPage::SearchPage(ProductService* service, QWidget* parent)
@@ -146,6 +147,7 @@ void SearchPage::refresh()
         m_table->setItem(i, 2, new QTableWidgetItem(QString("￥%1").arg(p.price, 0, 'f', 2)));
         m_table->setItem(i, 3, new QTableWidgetItem(p.sellerName));
         m_table->item(i, 0)->setData(Qt::UserRole, p.id);
+        m_table->item(i, 0)->setData(Qt::UserRole + 1, p.sellerId);
     }
     m_count->setText(QString("共 %1 件").arg(m_table->rowCount()));
 }
@@ -161,5 +163,10 @@ void SearchPage::onRowDoubleClicked(int row, int column)
     int id = item->data(Qt::UserRole).toInt();
     if (id <= 0)
         return;
+    int sellerId = item->data(Qt::UserRole + 1).toInt();
+    if (Session::instance().isLoggedIn() && sellerId == Session::instance().currentUser().id) {
+        QMessageBox::information(this, "提示", "这是你自己发布的商品");
+        return;
+    }
     emit buyRequested(id);
 }
