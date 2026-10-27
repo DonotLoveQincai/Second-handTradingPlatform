@@ -110,6 +110,14 @@ QWidget* MainWindow::makePlaceholder(const QString& text)
 
 void MainWindow::buildUi()
 {
+    // 0) 先清掉 Designer 里残留的空页（.ui 里曾经有 page / page_2 两个空 QWidget）。
+    //    不清的话，代码 addWidget 的页面会整体后移，点第 N 项导航看到的是别的页面。
+    while (ui->stackedWidget->count() > 0) {
+        QWidget* w = ui->stackedWidget->widget(0);
+        ui->stackedWidget->removeWidget(w);
+        delete w;
+    }
+
     // 1) 造页面。m_myOrdersPage 是 B 的部分，还没合进 develop，先用占位页占位置。
     m_searchPage     = new SearchPage(m_productService, this);
     m_myProductsPage = new MyProductsPage(m_productService, this);
