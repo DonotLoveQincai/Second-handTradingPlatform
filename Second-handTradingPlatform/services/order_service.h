@@ -1,5 +1,7 @@
 #pragma once
 
+#include <optional>
+
 #include <QObject>
 #include <QVector>
 
@@ -21,6 +23,8 @@ public:
     OpResult createOrder(int productId, int buyerId, const QString& remark, int* outOrderId);
 
     QVector<Order> queryOrders(const OrderQuery& q);
+
+    std::optional<Order> findOrder(int orderId);   // 订单详情页用
 
 signals:
     void orderCreated(int orderId);
