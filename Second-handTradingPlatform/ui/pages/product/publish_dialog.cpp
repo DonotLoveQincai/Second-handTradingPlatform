@@ -4,7 +4,6 @@
 #include <QDialogButtonBox>
 #include <QDoubleSpinBox>
 #include <QFormLayout>
-#include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
 #include <QPlainTextEdit>
@@ -12,152 +11,120 @@
 #include <QSpinBox>
 #include <QVBoxLayout>
 
-#include "core/common/constants.h"
 #include "services/product_service.h"
 
 PublishDialog::PublishDialog(ProductService* service, int sellerId, QWidget* parent)
-    : QDialog(parent)
-    , m_service(service)
-    , m_sellerId(sellerId)
+    : QDialog(parent), m_service(service), m_sellerId(sellerId)
 {
-    setWindowTitle(QStringLiteral("发布商品"));
-    buildUi();
-    loadCategories();
-}
+    setWindowTitle("发布商品");
 
-void PublishDialog::buildUi()
-{
-    auto* root = new QVBoxLayout(this);
+    QVBoxLayout* root = new QVBoxLayout(this);
+    QFormLayout* form = new QFormLayout;
 
-    auto* form = new QFormLayout;
+    m_title = new QLineEdit(this);
+    m_title->setMaxLength(60);
+    m_title->setPlaceholderText("例如：九成新 iPhone 13");
+    form->addRow("标题", m_title);
 
-    m_titleEdit = new QLineEdit(this);
-    m_titleEdit->setMaxLength(60);
-    m_titleEdit->setPlaceholderText(QStringLiteral("例如：九成新 iPhone 13"));
-    form->addRow(QStringLiteral("标题"), m_titleEdit);
+    m_cat = new QComboBox(this);
+    form->addRow("分类", m_cat);
 
-    m_categoryBox = new QComboBox(this);
-    form->addRow(QStringLiteral("分类"), m_categoryBox);
+    m_price = new QDoubleSpinBox(this);
+    m_price->setRange(0.01, 999999);
+    m_price->setDecimals(2);
+    m_price->setSuffix(" 元");
+    form->addRow("价格", m_price);
 
-    m_priceSpin = new QDoubleSpinBox(this);
-    m_priceSpin->setRange(0.01, 999999);
-    m_priceSpin->setDecimals(2);
-    m_priceSpin->setSuffix(QStringLiteral(" 元"));
-    form->addRow(QStringLiteral("价格"), m_priceSpin);
+    m_cond = new QSpinBox(this);
+    m_cond->setRange(1, 10);
+    m_cond->setValue(9);
+    m_cond->setSuffix(" 成新（10 就是全新）");
+    form->addRow("成色", m_cond);
 
-    m_conditionSpin = new QSpinBox(this);
-    m_conditionSpin->setRange(1, 10);
-    m_conditionSpin->setValue(9);
-    m_conditionSpin->setSuffix(QStringLiteral(" 成新（10 = 全新）"));
-    form->addRow(QStringLiteral("成色"), m_conditionSpin);
-
-    m_descEdit = new QPlainTextEdit(this);
-    m_descEdit->setPlaceholderText(QStringLiteral("可选：型号、磨损、附件…"));
-    m_descEdit->setFixedHeight(90);
-    form->addRow(QStringLiteral("描述"), m_descEdit);
+    m_desc = new QPlainTextEdit(this);
+    m_desc->setFixedHeight(90);
+    m_desc->setPlaceholderText("型号、磨损、配件，随便写");
+    form->addRow("描述", m_desc);
 
     root->addLayout(form);
 
-    m_errorLabel = new QLabel(this);
-    m_errorLabel->setStyleSheet(QStringLiteral("color:#c0392b;"));
-    m_errorLabel->setWordWrap(true);
-    root->addWidget(m_errorLabel);
+    m_err = new QLabel(this);
+    m_err->setStyleSheet("color:#c0392b;");
+    m_err->setWordWrap(true);
+    root->addWidget(m_err);
 
-    auto* buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
-    buttons->button(QDialogButtonBox::Ok)->setText(QStringLiteral("提交"));
-    buttons->button(QDialogButtonBox::Cancel)->setText(QStringLiteral("取消"));
-    root->addWidget(buttons);
+    QDialogButtonBox* box = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+    box->button(QDialogButtonBox::Ok)->setText("提交");
+    box->button(QDialogButtonBox::Cancel)->setText("取消");
+    root->addWidget(box);
 
-    connect(buttons, &QDialogButtonBox::accepted, this, &PublishDialog::onSubmitClicked);
-    connect(buttons, &QDialogButtonBox::rejected, this, &PublishDialog::reject);
-}
-
-void PublishDialog::loadCategories()
-{
-    m_categoryBox->clear();
-    const QVector<CategoryNode> categories = m_service->categories();
-    for (const CategoryNode& parent : categories) {
-        if (parent.parentId != 0)
-            continue;
-        for (const CategoryNode& child : categories) {
-            if (child.parentId != parent.id)
-                continue;
-            m_categoryBox->addItem(QStringLiteral("%1 / %2").arg(parent.name, child.name), child.id);
-        }
-    }
-    // 没有子分类的顶级分类也要能选（图书教材、家居日用…）
-    for (const CategoryNode& parent : categories) {
-        if (parent.parentId != 0)
+    QVector<CategoryNode> cats = m_service->categories();
+    for (int i = 0; i < cats.size(); i++) {
+        if (cats[i].parentId != 0)
             continue;
         bool hasChild = false;
-        for (const CategoryNode& child : categories)
-            if (child.parentId == parent.id)
+        for (int j = 0; j < cats.size(); j++) {
+            if (cats[j].parentId == cats[i].id) {
                 hasChild = true;
+                m_cat->addItem(cats[i].name + " / " + cats[j].name, cats[j].id);
+            }
+        }
         if (!hasChild)
-            m_categoryBox->addItem(parent.name, parent.id);
+            m_cat->addItem(cats[i].name, cats[i].id);
     }
+
+    connect(box, &QDialogButtonBox::accepted, this, &PublishDialog::onSubmitClicked);
+    connect(box, &QDialogButtonBox::rejected, this, &QDialog::reject);
 }
 
-void PublishDialog::setProduct(const Product& product)
+void PublishDialog::setProduct(const Product& p)
 {
-    m_original = product;
-    m_editingId = product.id;
-    setWindowTitle(QStringLiteral("修改商品"));
+    m_editId = p.id;
+    setWindowTitle("修改商品");
 
-    m_titleEdit->setText(product.title);
-    const int index = m_categoryBox->findData(product.categoryId);
-    if (index >= 0)
-        m_categoryBox->setCurrentIndex(index);
-    m_priceSpin->setValue(product.price);
-    m_conditionSpin->setValue(product.conditionLevel);
-    m_descEdit->setPlainText(product.description);
-}
-
-bool PublishDialog::collect(Product& out, QString* error) const
-{
-    const QString title = m_titleEdit->text().trimmed();
-    if (title.isEmpty()) {
-        *error = QStringLiteral("标题不能为空");
-        return false;
-    }
-    if (title.size() > 60) {
-        *error = QStringLiteral("标题不能超过 60 个字");
-        return false;
-    }
-    if (m_categoryBox->currentData().toInt() <= 0) {
-        *error = QStringLiteral("请选择分类");
-        return false;
-    }
-    if (m_priceSpin->value() <= 0) {
-        *error = QStringLiteral("价格必须大于 0");
-        return false;
-    }
-
-    out = m_original;                          // 保留 id / status / 时间等字段
-    out.title = title;
-    out.description = m_descEdit->toPlainText().trimmed();
-    out.categoryId = m_categoryBox->currentData().toInt();
-    out.price = m_priceSpin->value();
-    out.conditionLevel = m_conditionSpin->value();
-    out.sellerId = m_sellerId;
-    return true;
+    m_title->setText(p.title);
+    int idx = m_cat->findData(p.categoryId);
+    if (idx >= 0)
+        m_cat->setCurrentIndex(idx);
+    m_price->setValue(p.price);
+    m_cond->setValue(p.conditionLevel);
+    m_desc->setPlainText(p.description);
 }
 
 void PublishDialog::onSubmitClicked()
 {
-    Product product;
-    QString error;
-    if (!collect(product, &error)) {
-        m_errorLabel->setText(error);
+    QString title = m_title->text().trimmed();
+    if (title.isEmpty()) {
+        m_err->setText("标题还没写");
+        return;
+    }
+    if (title.size() > 60) {
+        m_err->setText("标题太长了，60 个字以内");
+        return;
+    }
+    int catId = m_cat->currentData().toInt();
+    if (catId <= 0) {
+        m_err->setText("还没选分类");
+        return;
+    }
+    if (m_price->value() <= 0) {
+        m_err->setText("价格得大于 0");
         return;
     }
 
-    const OpResult result = (m_editingId > 0)
-                                ? m_service->updateInfo(product, m_sellerId)
-                                : m_service->publish(product, m_sellerId);
+    Product p;
+    p.id = m_editId;
+    p.title = title;
+    p.categoryId = catId;
+    p.price = m_price->value();
+    p.conditionLevel = m_cond->value();
+    p.description = m_desc->toPlainText().trimmed();
+    p.sellerId = m_sellerId;
 
-    if (!result.ok) {
-        m_errorLabel->setText(result.message);
+    OpResult r = (m_editId > 0) ? m_service->updateInfo(p, m_sellerId)
+                                : m_service->publish(p, m_sellerId);
+    if (!r.ok) {
+        m_err->setText(r.message);
         return;
     }
     accept();

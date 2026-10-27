@@ -12,225 +12,155 @@
 #include <QTableWidget>
 #include <QVBoxLayout>
 
-#include "core/common/constants.h"
 #include "core/session.h"
 #include "services/product_service.h"
 
-namespace {
-constexpr int kColTitle = 0;
-constexpr int kColCategory = 1;
-constexpr int kColPrice = 2;
-constexpr int kColCondition = 3;
-constexpr int kColSeller = 4;
-constexpr int kColStatus = 5;
-constexpr int kColCreated = 6;
-constexpr int kColCount = 7;
-
-QString moneyText(double value)
-{
-    return QStringLiteral("￥%1").arg(value, 0, 'f', 2);
-}
-}
-
 SearchPage::SearchPage(ProductService* service, QWidget* parent)
-    : QWidget(parent)
-    , m_service(service)
+    : QWidget(parent), m_service(service)
 {
-    buildUi();
-    loadCategories();
-    refresh();
-}
+    QHBoxLayout* root = new QHBoxLayout(this);
 
-void SearchPage::buildUi()
-{
-    auto* root = new QHBoxLayout(this);
+    QVBoxLayout* left = new QVBoxLayout;
+    left->addWidget(new QLabel("分类", this));
+    m_catList = new QListWidget(this);
+    m_catList->setFixedWidth(150);
+    left->addWidget(m_catList, 1);
+    root->addLayout(left);
 
-    // —— 左侧：分类列表（全部 + 父分类 + 子分类） ——
-    auto* leftColumn = new QVBoxLayout;
-    leftColumn->addWidget(new QLabel(QStringLiteral("分类"), this));
-    m_categoryList = new QListWidget(this);
-    m_categoryList->setFixedWidth(150);
-    leftColumn->addWidget(m_categoryList, 1);
-    root->addLayout(leftColumn);
+    QVBoxLayout* right = new QVBoxLayout;
 
-    // —— 右侧：条件 + 表格 ——
-    auto* rightColumn = new QVBoxLayout;
+    QHBoxLayout* row1 = new QHBoxLayout;
+    row1->addWidget(new QLabel("关键字", this));
+    m_kw = new QLineEdit(this);
+    m_kw->setPlaceholderText("标题里有什么");
+    m_kw->setClearButtonEnabled(true);
+    row1->addWidget(m_kw, 1);
 
-    auto* filterRow = new QHBoxLayout;
-    filterRow->addWidget(new QLabel(QStringLiteral("关键字"), this));
-    m_keywordEdit = new QLineEdit(this);
-    m_keywordEdit->setPlaceholderText(QStringLiteral("标题包含…"));
-    m_keywordEdit->setClearButtonEnabled(true);
-    filterRow->addWidget(m_keywordEdit, 1);
+    row1->addWidget(new QLabel("价格", this));
+    m_min = new QDoubleSpinBox(this);
+    m_min->setRange(0, 1000000);
+    m_min->setDecimals(0);
+    m_min->setSpecialValueText("不限");
+    row1->addWidget(m_min);
+    row1->addWidget(new QLabel("-", this));
+    m_max = new QDoubleSpinBox(this);
+    m_max->setRange(0, 1000000);
+    m_max->setDecimals(0);
+    m_max->setSpecialValueText("不限");
+    row1->addWidget(m_max);
 
-    filterRow->addWidget(new QLabel(QStringLiteral("价格"), this));
-    m_priceMin = new QDoubleSpinBox(this);
-    m_priceMin->setRange(0, 1000000);
-    m_priceMin->setDecimals(0);
-    m_priceMin->setSpecialValueText(QStringLiteral("不限"));
-    filterRow->addWidget(m_priceMin);
+    row1->addWidget(new QLabel("排序", this));
+    m_sort = new QComboBox(this);
+    m_sort->addItem("最新发布", "time_desc");
+    m_sort->addItem("价格从低到高", "price_asc");
+    m_sort->addItem("价格从高到低", "price_desc");
+    row1->addWidget(m_sort);
 
-    filterRow->addWidget(new QLabel(QStringLiteral("-"), this));
-    m_priceMax = new QDoubleSpinBox(this);
-    m_priceMax->setRange(0, 1000000);
-    m_priceMax->setDecimals(0);
-    m_priceMax->setSpecialValueText(QStringLiteral("不限"));
-    filterRow->addWidget(m_priceMax);
-
-    filterRow->addWidget(new QLabel(QStringLiteral("排序"), this));
-    m_sortBox = new QComboBox(this);
-    m_sortBox->addItem(QStringLiteral("最新发布"), QStringLiteral("time_desc"));
-    m_sortBox->addItem(QStringLiteral("价格从低到高"), QStringLiteral("price_asc"));
-    m_sortBox->addItem(QStringLiteral("价格从高到低"), QStringLiteral("price_desc"));
-    filterRow->addWidget(m_sortBox);
-
-    auto* searchButton = new QPushButton(QStringLiteral("搜索"), this);
-    auto* publishButton = new QPushButton(QStringLiteral("发布商品"), this);
-    filterRow->addWidget(searchButton);
-    filterRow->addWidget(publishButton);
-    rightColumn->addLayout(filterRow);
+    QPushButton* searchBtn = new QPushButton("搜索", this);
+    QPushButton* pubBtn = new QPushButton("发布商品", this);
+    row1->addWidget(searchBtn);
+    row1->addWidget(pubBtn);
+    right->addLayout(row1);
 
     m_table = new QTableWidget(this);
-    m_table->setColumnCount(kColCount);
-    m_table->setHorizontalHeaderLabels({QStringLiteral("标题"), QStringLiteral("分类"),
-                                        QStringLiteral("价格"), QStringLiteral("成色"),
-                                        QStringLiteral("卖家"), QStringLiteral("状态"),
-                                        QStringLiteral("发布时间")});
+    m_table->setColumnCount(6);
+    m_table->setHorizontalHeaderLabels({"标题", "分类", "价格", "成色", "卖家", "发布时间"});
     m_table->setEditTriggers(QAbstractItemView::NoEditTriggers);
     m_table->setSelectionBehavior(QAbstractItemView::SelectRows);
     m_table->setSelectionMode(QAbstractItemView::SingleSelection);
     m_table->verticalHeader()->setVisible(false);
     m_table->horizontalHeader()->setStretchLastSection(true);
-    rightColumn->addWidget(m_table, 1);
+    right->addWidget(m_table, 1);
 
-    m_countLabel = new QLabel(this);
-    rightColumn->addWidget(m_countLabel);
+    m_count = new QLabel(this);
+    right->addWidget(m_count);
+    root->addLayout(right, 1);
 
-    root->addLayout(rightColumn, 1);
-
-    connect(searchButton, &QPushButton::clicked, this, &SearchPage::onSearchClicked);
-    connect(publishButton, &QPushButton::clicked, this, &SearchPage::publishRequested);
-    connect(m_keywordEdit, &QLineEdit::returnPressed, this, &SearchPage::onSearchClicked);
-    connect(m_sortBox, &QComboBox::currentIndexChanged, this, &SearchPage::onSearchClicked);
-    connect(m_categoryList, &QListWidget::currentRowChanged, this, &SearchPage::onCategoryChanged);
-    connect(m_table, &QTableWidget::cellDoubleClicked, this, &SearchPage::onRowDoubleClicked);
-}
-
-// 分类列：全部 → 父分类 → 缩进的子分类；id 存在 Qt::UserRole 里
-void SearchPage::loadCategories()
-{
-    m_categories = m_service->categories();
-
-    m_categoryList->clear();
-    auto* allItem = new QListWidgetItem(QStringLiteral("全部"), m_categoryList);
-    allItem->setData(Qt::UserRole, 0);
-
-    for (const CategoryNode& parent : m_categories) {
-        if (parent.parentId != 0)
+    m_catList->addItem("全部");
+    m_catList->item(0)->setData(Qt::UserRole, 0);
+    m_cats = m_service->categories();
+    for (int i = 0; i < m_cats.size(); i++) {
+        if (m_cats[i].parentId != 0)
             continue;
-        auto* parentItem = new QListWidgetItem(parent.name, m_categoryList);
-        parentItem->setData(Qt::UserRole, parent.id);
-        for (const CategoryNode& child : m_categories) {
-            if (child.parentId != parent.id)
-                continue;
-            auto* childItem = new QListWidgetItem(QStringLiteral("    ") + child.name, m_categoryList);
-            childItem->setData(Qt::UserRole, child.id);
+        m_catList->addItem(m_cats[i].name);
+        m_catList->item(m_catList->count() - 1)->setData(Qt::UserRole, m_cats[i].id);
+        for (int j = 0; j < m_cats.size(); j++) {
+            if (m_cats[j].parentId == m_cats[i].id) {
+                m_catList->addItem(QString("    ") + m_cats[j].name);
+                m_catList->item(m_catList->count() - 1)->setData(Qt::UserRole, m_cats[j].id);
+            }
         }
     }
 
-    if (m_categoryList->count() > 0)
-        m_categoryList->setCurrentRow(0);
+    connect(searchBtn, &QPushButton::clicked, this, &SearchPage::refresh);
+    connect(pubBtn, &QPushButton::clicked, this, &SearchPage::publishRequested);
+    connect(m_kw, &QLineEdit::returnPressed, this, &SearchPage::refresh);
+    connect(m_sort, &QComboBox::currentIndexChanged, this, &SearchPage::refresh);
+    connect(m_catList, &QListWidget::currentRowChanged, this, &SearchPage::refresh);
+    connect(m_table, &QTableWidget::cellDoubleClicked, this, &SearchPage::onRowDoubleClicked);
+
+    m_catList->setCurrentRow(0);
+    refresh();
 }
 
-void SearchPage::refresh()
-{
-    ProductQuery query;
-    query.keyword = m_keywordEdit->text().trimmed();
-    query.categoryIds = selectedCategoryIds();
-    if (m_priceMin->value() > 0)
-        query.priceMin = m_priceMin->value();
-    if (m_priceMax->value() > 0)
-        query.priceMax = m_priceMax->value();
-    query.sortBy = m_sortBox->currentData().toString();
-
-    if (query.priceMin >= 0 && query.priceMax >= 0 && query.priceMin > query.priceMax) {
-        QMessageBox::warning(this, QStringLiteral("价格区间"), QStringLiteral("最低价不能大于最高价"));
-        return;
-    }
-
-    fillTable(m_service->search(query));
-}
-
-// 选中父分类时子分类一起查，否则「数码电子」查不到「手机」下的商品
-QVector<int> SearchPage::selectedCategoryIds() const
+QVector<int> SearchPage::selectedIds() const
 {
     QVector<int> ids;
-    if (!m_categoryList->currentItem())
+    QListWidgetItem* item = m_catList->currentItem();
+    if (!item)
         return ids;
-
-    const int selectedId = m_categoryList->currentItem()->data(Qt::UserRole).toInt();
-    if (selectedId <= 0)
+    int cid = item->data(Qt::UserRole).toInt();
+    if (cid <= 0)
         return ids;
-
-    ids.append(selectedId);
-    for (const CategoryNode& node : m_categories) {
-        if (node.parentId == selectedId)
-            ids.append(node.id);
+    ids.append(cid);
+    for (int i = 0; i < m_cats.size(); i++) {
+        if (m_cats[i].parentId == cid)
+            ids.append(m_cats[i].id);
     }
     return ids;
 }
 
-void SearchPage::fillTable(const QVector<Product>& products)
+void SearchPage::refresh()
 {
-    m_rows = products;
+    ProductQuery q;
+    q.keyword = m_kw->text().trimmed();
+    q.categoryIds = selectedIds();
+    if (m_min->value() > 0)
+        q.priceMin = m_min->value();
+    if (m_max->value() > 0)
+        q.priceMax = m_max->value();
+    q.sortBy = m_sort->currentData().toString();
 
-    // 每行都 new QTableWidgetItem，刷新前必须先清空，否则越刷越多
-    m_table->setRowCount(0);
-    m_table->setRowCount(products.size());
-    for (int row = 0; row < products.size(); ++row) {
-        const Product& p = products.at(row);
-        m_table->setItem(row, kColTitle, new QTableWidgetItem(p.title));
-        m_table->setItem(row, kColCategory, new QTableWidgetItem(p.categoryName));
-        m_table->setItem(row, kColPrice, new QTableWidgetItem(moneyText(p.price)));
-        m_table->setItem(row, kColCondition, new QTableWidgetItem(conditionText(p.conditionLevel)));
-        m_table->setItem(row, kColSeller, new QTableWidgetItem(p.sellerName));
-        m_table->setItem(row, kColStatus, new QTableWidgetItem(Const::zh(p.status)));
-        m_table->setItem(row, kColCreated, new QTableWidgetItem(p.createdAt));
+    if (q.priceMin >= 0 && q.priceMax >= 0 && q.priceMin > q.priceMax) {
+        QMessageBox::warning(this, "价格区间", "最低价比最高价还高");
+        return;
     }
 
-    m_countLabel->setText(QStringLiteral("共 %1 件商品（双击一行下单）").arg(m_table->rowCount()));
-}
+    m_list = m_service->search(q);
 
-void SearchPage::onSearchClicked()
-{
-    refresh();
-}
-
-void SearchPage::onCategoryChanged()
-{
-    refresh();
+    m_table->setRowCount(0);
+    m_table->setRowCount(m_list.size());
+    for (int i = 0; i < m_list.size(); i++) {
+        Product p = m_list[i];
+        m_table->setItem(i, 0, new QTableWidgetItem(p.title));
+        m_table->setItem(i, 1, new QTableWidgetItem(p.categoryName));
+        m_table->setItem(i, 2, new QTableWidgetItem(QString("￥%1").arg(p.price, 0, 'f', 2)));
+        m_table->setItem(i, 3, new QTableWidgetItem(conditionText(p.conditionLevel)));
+        m_table->setItem(i, 4, new QTableWidgetItem(p.sellerName));
+        m_table->setItem(i, 5, new QTableWidgetItem(p.createdAt));
+    }
+    m_count->setText(QString("一共 %1 件，双击可以买").arg(m_table->rowCount()));
 }
 
 void SearchPage::onRowDoubleClicked(int row, int column)
 {
     Q_UNUSED(column)
-    if (row < 0 || row >= m_rows.size())
+    if (row < 0 || row >= m_list.size())
         return;
-
-    const Product& product = m_rows.at(row);
-
-    // 自己的商品不给买，先在界面上拦一次（OrderService 里还会再拦一次）
-    if (Session::instance().isLoggedIn()
-        && product.sellerId == Session::instance().currentUser().id) {
-        QMessageBox::information(this, QStringLiteral("提示"), QStringLiteral("这是你自己发布的商品"));
+    Product p = m_list[row];
+    if (Session::instance().isLoggedIn() && p.sellerId == Session::instance().currentUser().id) {
+        QMessageBox::information(this, "提示", "这是你自己发布的商品");
         return;
     }
-
-    if (product.status != Const::ProductStatus::OnSale) {
-        QMessageBox::information(this, QStringLiteral("提示"),
-                                 QStringLiteral("该商品当前是「%1」，不能下单").arg(Const::zh(product.status)));
-        return;
-    }
-
-    emit buyRequested(product.id);
+    emit buyRequested(p.id);
 }

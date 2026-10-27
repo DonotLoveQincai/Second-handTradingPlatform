@@ -13,36 +13,17 @@
 #include "services/product_service.h"
 #include "ui/pages/product/publish_dialog.h"
 
-namespace {
-constexpr int kColTitle = 0;
-constexpr int kColCategory = 1;
-constexpr int kColPrice = 2;
-constexpr int kColCondition = 3;
-constexpr int kColStatus = 4;
-constexpr int kColActions = 5;
-constexpr int kColCount = 6;
-}
-
 MyProductsPage::MyProductsPage(ProductService* service, QWidget* parent)
-    : QWidget(parent)
-    , m_service(service)
+    : QWidget(parent), m_service(service)
 {
-    buildUi();
-    refresh();
-}
+    QVBoxLayout* root = new QVBoxLayout(this);
 
-void MyProductsPage::buildUi()
-{
-    auto* root = new QVBoxLayout(this);
-
-    m_hintLabel = new QLabel(this);
-    root->addWidget(m_hintLabel);
+    m_tip = new QLabel(this);
+    root->addWidget(m_tip);
 
     m_table = new QTableWidget(this);
-    m_table->setColumnCount(kColCount);
-    m_table->setHorizontalHeaderLabels({QStringLiteral("标题"), QStringLiteral("分类"),
-                                        QStringLiteral("价格"), QStringLiteral("成色"),
-                                        QStringLiteral("状态"), QStringLiteral("操作")});
+    m_table->setColumnCount(5);
+    m_table->setHorizontalHeaderLabels({"标题", "分类", "价格", "成色", "操作"});
     m_table->setEditTriggers(QAbstractItemView::NoEditTriggers);
     m_table->setSelectionBehavior(QAbstractItemView::SelectRows);
     m_table->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -51,103 +32,94 @@ void MyProductsPage::buildUi()
     root->addWidget(m_table, 1);
 
     connect(m_table, &QTableWidget::cellDoubleClicked, this, &MyProductsPage::onRowDoubleClicked);
+
+    refresh();
 }
 
 void MyProductsPage::refresh()
 {
     if (!Session::instance().isLoggedIn()) {
-        m_rows.clear();
+        m_list.clear();
         m_table->setRowCount(0);
-        m_hintLabel->setText(QStringLiteral("登录后可以管理自己发布的商品。"));
+        m_tip->setText("登录之后才能管自己的商品");
         return;
     }
 
-    m_hintLabel->setText(QStringLiteral("点按钮上架 / 下架 / 改信息；双击一行也能改信息。"));
+    m_tip->setText("双击一行可以改信息");
+    m_list = m_service->myProducts(Session::instance().currentUser().id);
 
-    m_rows = m_service->myProducts(Session::instance().currentUser().id);
-
-    // 每行都 new 了 item 和按钮控件，先清空再重建（否则越刷越多）
     m_table->setRowCount(0);
-    m_table->setRowCount(m_rows.size());
+    m_table->setRowCount(m_list.size());
+    for (int i = 0; i < m_list.size(); i++) {
+        Product p = m_list[i];
+        m_table->setItem(i, 0, new QTableWidgetItem(p.title));
+        m_table->setItem(i, 1, new QTableWidgetItem(p.categoryName));
+        m_table->setItem(i, 2, new QTableWidgetItem(QString("￥%1").arg(p.price, 0, 'f', 2)));
+        m_table->setItem(i, 3, new QTableWidgetItem(conditionText(p.conditionLevel)));
 
-    for (int row = 0; row < m_rows.size(); ++row) {
-        const Product& product = m_rows.at(row);
-
-        m_table->setItem(row, kColTitle, new QTableWidgetItem(product.title));
-        m_table->setItem(row, kColCategory, new QTableWidgetItem(product.categoryName));
-        m_table->setItem(row, kColPrice,
-                         new QTableWidgetItem(QStringLiteral("￥%1").arg(product.price, 0, 'f', 2)));
-        m_table->setItem(row, kColCondition, new QTableWidgetItem(conditionText(product.conditionLevel)));
-        m_table->setItem(row, kColStatus, new QTableWidgetItem(Const::zh(product.status)));
-
-        auto* cell = new QWidget(m_table);
-        auto* cellLayout = new QHBoxLayout(cell);
-        cellLayout->setContentsMargins(2, 2, 2, 2);
-        cellLayout->setSpacing(4);
-
-        const int productId = product.id;       // 按值捕获，否则循环里全拿到最后一个 id
-        if (product.status == Const::ProductStatus::OnSale) {
-            auto* offButton = new QPushButton(QStringLiteral("下架"), cell);
-            connect(offButton, &QPushButton::clicked, this,
-                    [this, productId]() { takeDown(productId); });
-            cellLayout->addWidget(offButton);
-        } else if (product.status == Const::ProductStatus::OffSale) {
-            auto* onButton = new QPushButton(QStringLiteral("上架"), cell);
-            connect(onButton, &QPushButton::clicked, this,
-                    [this, productId]() { putOnSale(productId); });
-            cellLayout->addWidget(onButton);
+        QWidget* cell = new QWidget(m_table);
+        QHBoxLayout* lay = new QHBoxLayout(cell);
+        lay->setContentsMargins(2, 2, 2, 2);
+        int id = p.id;
+        if (p.status == Const::ProductStatus::OnSale) {
+            QPushButton* off = new QPushButton("下架", cell);
+            connect(off, &QPushButton::clicked, this, [this, id]() { takeDown(id); });
+            lay->addWidget(off);
+        } else if (p.status == Const::ProductStatus::OffSale) {
+            QPushButton* on = new QPushButton("上架", cell);
+            connect(on, &QPushButton::clicked, this, [this, id]() { putOnSale(id); });
+            lay->addWidget(on);
         }
 
-        if (product.status != Const::ProductStatus::Sold) {
-            auto* editButton = new QPushButton(QStringLiteral("修改"), cell);
-            connect(editButton, &QPushButton::clicked, this,
-                    [this, productId]() { editProduct(productId); });
-            cellLayout->addWidget(editButton);
+        if (p.status != Const::ProductStatus::Sold) {
+            QPushButton* ed = new QPushButton("修改", cell);
+            connect(ed, &QPushButton::clicked, this, [this, id]() { editProduct(id); });
+            lay->addWidget(ed);
         } else {
-            cellLayout->addWidget(new QLabel(QStringLiteral("已成交，不可操作"), cell));
+            lay->addWidget(new QLabel("卖掉了", cell));
         }
 
-        cellLayout->addStretch();
-        m_table->setCellWidget(row, kColActions, cell);
+        lay->addStretch();
+        m_table->setCellWidget(i, 4, cell);
     }
 }
 
 void MyProductsPage::editProduct(int productId)
 {
-    const std::optional<Product> product = m_service->find(productId);
-    if (!product) {
-        QMessageBox::warning(this, QStringLiteral("提示"), QStringLiteral("商品不存在"));
+    std::optional<Product> p = m_service->find(productId);
+    if (!p) {
+        QMessageBox::warning(this, "提示", "找不到这个商品");
         return;
     }
 
-    PublishDialog dialog(m_service, Session::instance().currentUser().id, this);
-    dialog.setProduct(*product);
-    dialog.exec();
+    PublishDialog dlg(m_service, Session::instance().currentUser().id, this);
+    dlg.setProduct(*p);
+    dlg.exec();
     refresh();
 }
 
 void MyProductsPage::takeDown(int productId)
 {
-    const OpResult result = m_service->takeDown(productId, Session::instance().currentUser().id);
-    if (!result.ok)
-        QMessageBox::warning(this, QStringLiteral("下架失败"), result.message);
+    OpResult r = m_service->takeDown(productId, Session::instance().currentUser().id);
+    if (!r.ok)
+        QMessageBox::warning(this, "下架失败", r.message);
     refresh();
 }
 
 void MyProductsPage::putOnSale(int productId)
 {
-    const OpResult result = m_service->putOnSale(productId, Session::instance().currentUser().id);
-    if (!result.ok)
-        QMessageBox::warning(this, QStringLiteral("上架失败"), result.message);
+    OpResult r = m_service->putOnSale(productId, Session::instance().currentUser().id);
+    if (!r.ok)
+        QMessageBox::warning(this, "上架失败", r.message);
     refresh();
 }
 
 void MyProductsPage::onRowDoubleClicked(int row, int column)
 {
     Q_UNUSED(column)
-    if (row < 0 || row >= m_rows.size())
+    if (row < 0 || row >= m_list.size())
         return;
-    if (m_rows.at(row).status == Const::ProductStatus::Sold)
+    if (m_list[row].status == Const::ProductStatus::Sold)
         return;
-    editProduct(m_rows.at(row).id);
+    editProduct(m_list[row].id);
 }
