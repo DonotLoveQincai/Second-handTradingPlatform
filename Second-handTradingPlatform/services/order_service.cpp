@@ -89,3 +89,8 @@ QVector<Order> OrderService::queryOrders(const OrderQuery& q)
 {
     return m_orderRepo->search(q);
 }
+
+std::optional<Order> OrderService::findOrder(int orderId)
+{
+    return m_orderRepo->findById(orderId);
+}
