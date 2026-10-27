@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Release|x64">
@@ -13,13 +13,10 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{193555AD-CE22-3FE8-9DC0-CB1CC3F71A01}</ProjectGuid>
     <RootNamespace>Second-handTradingPlatform</RootNamespace>
-    <Keyword>QtVS_v304</Keyword>
-    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.22621.0</WindowsTargetPlatformMinVersion>
-    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+    <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+  <PropertyGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;" Label="Configuration">
     <PlatformToolset>v143</PlatformToolset>
     <OutputDirectory>release\</OutputDirectory>
     <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
@@ -28,7 +25,7 @@
     <IntermediateDirectory>release\</IntermediateDirectory>
     <PrimaryOutput>Second-handTradingPlatform</PrimaryOutput>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+  <PropertyGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;" Label="Configuration">
     <PlatformToolset>v143</PlatformToolset>
     <OutputDirectory>debug\</OutputDirectory>
     <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
@@ -38,43 +35,29 @@
     <PrimaryOutput>Second-handTradingPlatform</PrimaryOutput>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <Import Project="$(QtMsBuild)\qt_defaults.props" Condition="Exists('$(QtMsBuild)\qt_defaults.props')" />
-  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <QtInstall>6.11.2_mingw_64</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
-  </PropertyGroup>
-  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <QtInstall>6.11.2_mingw_64</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
-  </PropertyGroup>
-  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') OR !Exists('$(QtMsBuild)\Qt.props')">
-    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
-  </Target>
   <ImportGroup Label="ExtensionSettings" />
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
-    <Import Project="$(QtMsBuild)\Qt.props" />
+  <ImportGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
-    <Import Project="$(QtMsBuild)\Qt.props" />
+  <ImportGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Second-handTradingPlatform</TargetName>
-    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</IgnoreImportLibrary>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Second-handTradingPlatform</TargetName>
-    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</IgnoreImportLibrary>
+    <OutDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\</OutDir>
+    <IntDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\</IntDir>
+    <TargetName Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">Second-handTradingPlatform</TargetName>
+    <IgnoreImportLibrary Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">false</LinkIncremental>
+    <OutDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\</OutDir>
+    <IntDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\</IntDir>
+    <TargetName Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">Second-handTradingPlatform</TargetName>
+    <IgnoreImportLibrary Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</IgnoreImportLibrary>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+  <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">
     <ClCompile>
-      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;release;/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -utf-8 -w34100 -w34189 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>.;.;..\..\..\Qt6\6.11.2\msvc2022_64\include;..\..\..\Qt6\6.11.2\msvc2022_64\include\QtWidgets;..\..\..\Qt6\6.11.2\msvc2022_64\include\QtGui;..\..\..\Qt6\6.11.2\msvc2022_64\include\QtSql;..\..\..\Qt6\6.11.2\msvc2022_64\include\QtCore;release;.;/include;..\..\..\Qt6\6.11.2\msvc2022_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr /utf-8 -utf-8 -w34100 -w34189 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -83,7 +66,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>release\</ObjectFileName>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <ProgramDataBaseFileName></ProgramDataBaseFileName>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -91,12 +74,10 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(QTDIR)\lib\Qt6EntryPoint.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>D:\Qt6\6.11.2\msvc2022_64\lib\Qt6Widgets.lib;D:\Qt6\6.11.2\msvc2022_64\lib\Qt6Gui.lib;D:\Qt6\6.11.2\msvc2022_64\lib\Qt6Sql.lib;D:\Qt6\6.11.2\msvc2022_64\lib\Qt6Core.lib;D:\Qt6\6.11.2\msvc2022_64\lib\Qt6EntryPoint.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>&quot;/MANIFESTDEPENDENCY:type=&apos;win32&apos; name=&apos;Microsoft.Windows.Common-Controls&apos; version=&apos;6.0.0.0&apos; publicKeyToken=&apos;6595b64144ccf1df&apos; language=&apos;*&apos; processorArchitecture=&apos;*&apos;&quot; %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -114,26 +95,13 @@
       <WarningLevel>0</WarningLevel>
     </Midl>
     <ResourceCompile>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
-    <QtMoc>
-      <CompilerFlavor>msvc</CompilerFlavor>
-      <Include>./$(Configuration)/moc_predefs.h</Include>
-      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <DynamicSource>output</DynamicSource>
-      <QtMocDir>$(Configuration)</QtMocDir>
-      <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
-    </QtMoc>
-    <QtUic>
-      <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
-      <QtUicDir>$(ProjectDir)</QtUicDir>
-      <QtUicFileName>ui_%(Filename).h</QtUicFileName>
-    </QtUic>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+  <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">
     <ClCompile>
-      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;debug;/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -utf-8 -w34100 -w34189 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>.;.;..\..\..\Qt6\6.11.2\msvc2022_64\include;..\..\..\Qt6\6.11.2\msvc2022_64\include\QtWidgets;..\..\..\Qt6\6.11.2\msvc2022_64\include\QtGui;..\..\..\Qt6\6.11.2\msvc2022_64\include\QtSql;..\..\..\Qt6\6.11.2\msvc2022_64\include\QtCore;debug;.;/include;..\..\..\Qt6\6.11.2\msvc2022_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr /utf-8 -utf-8 -w34100 -w34189 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -142,19 +110,17 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>debug\</ObjectFileName>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(QTDIR)\lib\Qt6EntryPointd.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>D:\Qt6\6.11.2\msvc2022_64\lib\Qt6Widgetsd.lib;D:\Qt6\6.11.2\msvc2022_64\lib\Qt6Guid.lib;D:\Qt6\6.11.2\msvc2022_64\lib\Qt6Sqld.lib;D:\Qt6\6.11.2\msvc2022_64\lib\Qt6Cored.lib;D:\Qt6\6.11.2\msvc2022_64\lib\Qt6EntryPointd.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>&quot;/MANIFESTDEPENDENCY:type=&apos;win32&apos; name=&apos;Microsoft.Windows.Common-Controls&apos; version=&apos;6.0.0.0&apos; publicKeyToken=&apos;6595b64144ccf1df&apos; language=&apos;*&apos; processorArchitecture=&apos;*&apos;&quot; %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreImportLibrary>true</IgnoreImportLibrary>
@@ -169,49 +135,361 @@
       <WarningLevel>0</WarningLevel>
     </Midl>
     <ResourceCompile>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
-    <QtMoc>
-      <CompilerFlavor>msvc</CompilerFlavor>
-      <Include>./$(Configuration)/moc_predefs.h</Include>
-      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <DynamicSource>output</DynamicSource>
-      <QtMocDir>$(Configuration)</QtMocDir>
-      <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
-    </QtMoc>
-    <QtUic>
-      <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
-      <QtUicDir>$(ProjectDir)</QtUicDir>
-      <QtUicFileName>ui_%(Filename).h</QtUicFileName>
-    </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="services\auth_service.cpp" />
+    <ClCompile Include="ui\pages\order\buy_dialog.cpp" />
+    <ClCompile Include="data\db_manager.cpp" />
+    <ClCompile Include="ui\pages\import\import_page.cpp" />
+    <ClCompile Include="services\import_service.cpp" />
+    <ClCompile Include="ui\pages\auth\login_dialog.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="mainwindow.cpp" />
+    <ClCompile Include="ui\mainwindow.cpp" />
+    <ClCompile Include="ui\pages\order\my_orders_page.cpp" />
+    <ClCompile Include="ui\pages\product\my_products_page.cpp" />
+    <ClCompile Include="data\order_dao.cpp" />
+    <ClCompile Include="ui\pages\order\order_detail_dialog.cpp" />
+    <ClCompile Include="services\order_service.cpp" />
+    <ClCompile Include="data\product_dao.cpp" />
+    <ClCompile Include="services\product_service.cpp" />
+    <ClCompile Include="ui\pages\product\publish_dialog.cpp" />
+    <ClCompile Include="ui\pages\product\search_page.cpp" />
+    <ClCompile Include="data\trade_log_dao.cpp" />
+    <ClCompile Include="ui\pages\trade\trade_log_page.cpp" />
+    <ClCompile Include="services\trade_service.cpp" />
+    <ClCompile Include="services\trade_state_machine.cpp" />
+    <ClCompile Include="data\user_dao.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="mainwindow.h" />
+    <CustomBuild Include="services\auth_service.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">services\auth_service.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; services\auth_service.h -o release\moc_auth_service.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC services/auth_service.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_auth_service.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">services\auth_service.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; services\auth_service.h -o debug\moc_auth_service.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC services/auth_service.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_auth_service.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ui\pages\order\buy_dialog.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui\pages\order\buy_dialog.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\order\buy_dialog.h -o release\moc_buy_dialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC ui/pages/order/buy_dialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_buy_dialog.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui\pages\order\buy_dialog.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\order\buy_dialog.h -o debug\moc_buy_dialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC ui/pages/order/buy_dialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_buy_dialog.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="core\entity\category.h" />
+    <ClInclude Include="core\common\constants.h" />
+    <ClInclude Include="data\db_manager.h" />
+    <ClInclude Include="core\repository\i_order_repository.h" />
+    <ClInclude Include="core\repository\i_product_repository.h" />
+    <ClInclude Include="core\repository\i_trade_log_repository.h" />
+    <ClInclude Include="core\repository\i_user_repository.h" />
+    <CustomBuild Include="ui\pages\import\import_page.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui\pages\import\import_page.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\import\import_page.h -o release\moc_import_page.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC ui/pages/import/import_page.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_import_page.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui\pages\import\import_page.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\import\import_page.h -o debug\moc_import_page.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC ui/pages/import/import_page.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_import_page.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="services\import_service.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">services\import_service.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; services\import_service.h -o release\moc_import_service.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC services/import_service.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_import_service.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">services\import_service.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; services\import_service.h -o debug\moc_import_service.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC services/import_service.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_import_service.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ui\pages\auth\login_dialog.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui\pages\auth\login_dialog.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\auth\login_dialog.h -o release\moc_login_dialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC ui/pages/auth/login_dialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_login_dialog.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui\pages\auth\login_dialog.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\auth\login_dialog.h -o debug\moc_login_dialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC ui/pages/auth/login_dialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_login_dialog.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ui\mainwindow.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui\mainwindow.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\mainwindow.h -o release\moc_mainwindow.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC ui/mainwindow.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_mainwindow.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui\mainwindow.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\mainwindow.h -o debug\moc_mainwindow.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC ui/mainwindow.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_mainwindow.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ui\pages\order\my_orders_page.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui\pages\order\my_orders_page.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\order\my_orders_page.h -o release\moc_my_orders_page.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC ui/pages/order/my_orders_page.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_my_orders_page.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui\pages\order\my_orders_page.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\order\my_orders_page.h -o debug\moc_my_orders_page.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC ui/pages/order/my_orders_page.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_my_orders_page.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ui\pages\product\my_products_page.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui\pages\product\my_products_page.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\product\my_products_page.h -o release\moc_my_products_page.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC ui/pages/product/my_products_page.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_my_products_page.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui\pages\product\my_products_page.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\product\my_products_page.h -o debug\moc_my_products_page.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC ui/pages/product/my_products_page.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_my_products_page.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="core\common\opresult.h" />
+    <ClInclude Include="core\entity\order.h" />
+    <ClInclude Include="data\order_dao.h" />
+    <CustomBuild Include="ui\pages\order\order_detail_dialog.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui\pages\order\order_detail_dialog.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\order\order_detail_dialog.h -o release\moc_order_detail_dialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC ui/pages/order/order_detail_dialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_order_detail_dialog.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui\pages\order\order_detail_dialog.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\order\order_detail_dialog.h -o debug\moc_order_detail_dialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC ui/pages/order/order_detail_dialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_order_detail_dialog.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="services\order_service.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">services\order_service.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; services\order_service.h -o release\moc_order_service.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC services/order_service.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_order_service.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">services\order_service.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; services\order_service.h -o debug\moc_order_service.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC services/order_service.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_order_service.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="core\entity\product.h" />
+    <CustomBuild Include="data\product_dao.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">data\product_dao.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; data\product_dao.h -o release\moc_product_dao.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC data/product_dao.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_product_dao.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">data\product_dao.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; data\product_dao.h -o debug\moc_product_dao.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC data/product_dao.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_product_dao.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="services\product_service.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">services\product_service.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; services\product_service.h -o release\moc_product_service.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC services/product_service.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_product_service.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">services\product_service.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; services\product_service.h -o debug\moc_product_service.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC services/product_service.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_product_service.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="ui\pages\product\product_ui.h" />
+    <CustomBuild Include="ui\pages\product\publish_dialog.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui\pages\product\publish_dialog.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\product\publish_dialog.h -o release\moc_publish_dialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC ui/pages/product/publish_dialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_publish_dialog.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui\pages\product\publish_dialog.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\product\publish_dialog.h -o debug\moc_publish_dialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC ui/pages/product/publish_dialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_publish_dialog.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ui\pages\product\search_page.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui\pages\product\search_page.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\product\search_page.h -o release\moc_search_page.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC ui/pages/product/search_page.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_search_page.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui\pages\product\search_page.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\product\search_page.h -o debug\moc_search_page.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC ui/pages/product/search_page.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_search_page.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="core\session.h" />
+    <ClInclude Include="core\entity\trade_log.h" />
+    <ClInclude Include="data\trade_log_dao.h" />
+    <CustomBuild Include="ui\pages\trade\trade_log_page.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui\pages\trade\trade_log_page.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\trade\trade_log_page.h -o release\moc_trade_log_page.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC ui/pages/trade/trade_log_page.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_trade_log_page.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui\pages\trade\trade_log_page.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; ui\pages\trade\trade_log_page.h -o debug\moc_trade_log_page.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC ui/pages/trade/trade_log_page.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_trade_log_page.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="services\trade_service.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">services\trade_service.h;release\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/release/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; services\trade_service.h -o release\moc_trade_service.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC services/trade_service.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_trade_service.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">services\trade_service.h;debug\moc_predefs.h;D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform/debug/moc_predefs.h -ID:/Qt6/6.11.2/msvc2022_64/mkspecs/win32-msvc -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/DSH-workspace/Second-handTradingPlatformDev/Second-handTradingPlatform -ID:/Qt6/6.11.2/msvc2022_64/include -ID:/Qt6/6.11.2/msvc2022_64/include/QtWidgets -ID:/Qt6/6.11.2/msvc2022_64/include/QtGui -ID:/Qt6/6.11.2/msvc2022_64/include/QtSql -ID:/Qt6/6.11.2/msvc2022_64/include/QtCore -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\ATLMFC\include&quot; -I&quot;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt&quot; services\trade_service.h -o debug\moc_trade_service.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC services/trade_service.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_trade_service.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="services\trade_state_machine.h" />
+    <ClInclude Include="core\entity\user.h" />
+    <ClInclude Include="data\user_dao.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="debug\moc_auth_service.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_auth_service.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_buy_dialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_buy_dialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_import_page.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_import_page.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_import_service.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_import_service.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_login_dialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_login_dialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_mainwindow.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_mainwindow.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_my_orders_page.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_my_orders_page.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_my_products_page.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_my_products_page.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_order_detail_dialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_order_detail_dialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_order_service.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_order_service.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <FileType>Document</FileType>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -Zi -MDd -std:c++17 -utf-8 -W3 -w34100 -w34189 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;$(IntDir)\moc_predefs.h</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generate moc_predefs.h</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\moc_predefs.h;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">..\..\..\Qt6\6.11.2\msvc2022_64\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">cl -BxD:\Qt6\6.11.2\msvc2022_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr /utf-8 -Zi -MDd -std:c++17 -utf-8 -W3 -w34100 -w34189 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E ..\..\..\Qt6\6.11.2\msvc2022_64\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;debug\moc_predefs.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">Generate moc_predefs.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_predefs.h;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <FileType>Document</FileType>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -O2 -MD -std:c++17 -utf-8 -W3 -w34100 -w34189 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;$(IntDir)\moc_predefs.h</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generate moc_predefs.h</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\moc_predefs.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">..\..\..\Qt6\6.11.2\msvc2022_64\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">cl -BxD:\Qt6\6.11.2\msvc2022_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr /utf-8 -O2 -MD -std:c++17 -utf-8 -W3 -w34100 -w34189 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E ..\..\..\Qt6\6.11.2\msvc2022_64\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;release\moc_predefs.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">Generate moc_predefs.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_predefs.h;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </CustomBuild>
+    <ClCompile Include="debug\moc_product_dao.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_product_dao.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_product_service.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_product_service.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_publish_dialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_publish_dialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_search_page.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_search_page.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_trade_log_page.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_trade_log_page.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_trade_service.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_trade_service.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\qrc_resources.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\qrc_resources.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClInclude Include="ui_mainwindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="ui\mainwindow.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui\mainwindow.ui;D:\Qt6\6.11.2\msvc2022_64\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\uic.exe ui\mainwindow.ui -o ui_mainwindow.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC ui/mainwindow.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_mainwindow.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui\mainwindow.ui;D:\Qt6\6.11.2\msvc2022_64\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\uic.exe ui\mainwindow.ui -o ui_mainwindow.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC ui/mainwindow.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_mainwindow.h;%(Outputs)</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="mainwindow.ui" />
+    <None Include="sql\001_init.sql" />
+    <CustomBuild Include="ui\resources\resources.qrc">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui\resources\resources.qrc;D:\Qt6\6.11.2\msvc2022_64\bin\rcc.exe;sql\001_init.sql;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\rcc.exe -name resources --no-zstd ui\resources\resources.qrc -o release\qrc_resources.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">RCC ui/resources/resources.qrc</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\qrc_resources.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui\resources\resources.qrc;D:\Qt6\6.11.2\msvc2022_64\bin\rcc.exe;sql\001_init.sql;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">D:\Qt6\6.11.2\msvc2022_64\bin\rcc.exe -name resources --no-zstd ui\resources\resources.qrc -o debug\qrc_resources.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">RCC ui/resources/resources.qrc</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\qrc_resources.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <Import Project="$(QtMsBuild)\qt.targets" Condition="Exists('$(QtMsBuild)\qt.targets')" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>
