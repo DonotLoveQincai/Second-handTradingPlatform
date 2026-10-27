@@ -12,7 +12,6 @@
 #include <QVBoxLayout>
 
 #include "services/product_service.h"
-#include "ui/pages/product/product_ui.h"
 
 PublishDialog::PublishDialog(ProductService* service, int sellerId, QWidget* parent)
     : QDialog(parent), m_service(service), m_sellerId(sellerId)
@@ -55,11 +54,12 @@ PublishDialog::PublishDialog(ProductService* service, int sellerId, QWidget* par
     root->addWidget(m_err);
 
     QDialogButtonBox* box = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
-    box->button(QDialogButtonBox::Ok)->setText("提交");
+    m_ok = box->button(QDialogButtonBox::Ok);
+    m_ok->setText("提交");
     box->button(QDialogButtonBox::Cancel)->setText("取消");
     root->addWidget(box);
 
-    QVector<CategoryItem> cats = allCategories();
+    QVector<Category> cats = m_service->categories();
     for (int i = 0; i < cats.size(); i++) {
         if (cats[i].parentId != 0)
             continue;
@@ -82,6 +82,7 @@ void PublishDialog::setProduct(const Product& p)
 {
     m_editId = p.id;
     setWindowTitle("修改商品");
+    m_ok->setText("保存");
 
     m_title->setText(p.title);
     int idx = m_cat->findData(p.categoryId);

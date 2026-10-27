@@ -3,6 +3,7 @@
 #include <QVector>
 
 #include "core/common/opresult.h"
+#include "core/entity/category.h"
 #include "core/entity/product.h"
 
 class IProductRepository {
@@ -14,4 +15,5 @@ public:
     virtual std::optional<Product> findById(int id) = 0;
     virtual QVector<Product> search(const ProductQuery& q) = 0;
     virtual QVector<Product> findBySeller(int sellerId) = 0;
+    virtual QVector<Category> categories() = 0;
 };

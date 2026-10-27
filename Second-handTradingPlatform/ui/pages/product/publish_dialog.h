@@ -8,6 +8,7 @@ class QDoubleSpinBox;
 class QLabel;
 class QLineEdit;
 class QPlainTextEdit;
+class QPushButton;
 class QSpinBox;
 class ProductService;
 
@@ -33,4 +34,5 @@ private:
     QSpinBox* m_cond = nullptr;
     QPlainTextEdit* m_desc = nullptr;
     QLabel* m_err = nullptr;
+    QPushButton* m_ok = nullptr;
 };

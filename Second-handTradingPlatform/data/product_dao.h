@@ -16,6 +16,7 @@ public:
     std::optional<Product> findById(int id) override;
     QVector<Product> search(const ProductQuery& q) override;
     QVector<Product> findBySeller(int sellerId) override;
+    QVector<Category> categories() override;
 
 private:
     static Product mapRow(const QSqlQuery& q);
