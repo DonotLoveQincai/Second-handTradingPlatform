@@ -240,6 +240,15 @@ LEFT JOIN products p ON p.id = o.product_id
 
 结尾 `ORDER BY l.id DESC`（查询页最新在上，与 `findByOrderId` 的正序相反，这是故意的）。
 
+### 7.5 谁调哪一个（别写反）
+
+| Service 方法 | 走哪个 DAO 方法 | 顺序 | 谁用 |
+|---|---|---|---|
+| `TradeService::orderLogs(orderId)` | `findByOrderId` | `l.id ASC`（旧 → 新） | 订单详情页的时间线，从上往下读 |
+| `TradeService::queryLogs(q)` | `search` | `l.id DESC`（新 → 旧） | 交易记录页，最新一条在最上面 |
+
+写反了不会报错，只会让详情页的时间线倒过来。联调用例 9.11（`tests/integration_test.cpp`）就是靠对比这四条日志的 `toStatus` 序列抓到的。
+
 ---
 
 ## 8. 界面：`TradeLogPage`（已实现）

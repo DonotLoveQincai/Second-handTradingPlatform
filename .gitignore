@@ -20,6 +20,9 @@ qrc_*.cpp
 *.user
 *.qtvscr
 .qmake.stash
+Makefile
+Makefile.Debug
+Makefile.Release
 
 # ---- IDE ----
 .vs/
