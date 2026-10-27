@@ -4,6 +4,7 @@
 #include <QVector>
 
 #include "core/common/opresult.h"
+#include "core/entity/category.h"
 #include "core/entity/product.h"
 
 class IProductRepository;
@@ -22,6 +23,7 @@ public:
     QVector<Product> search(const ProductQuery& q);
     QVector<Product> myProducts(int sellerId);
     std::optional<Product> find(int productId);
+    QVector<Category> categories();
 
 signals:
     void productsChanged();

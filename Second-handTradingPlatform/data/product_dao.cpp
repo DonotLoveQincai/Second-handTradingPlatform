@@ -104,8 +104,8 @@ QVector<Product> ProductDao::search(const ProductQuery& query)
     vals << Const::ProductStatus::OnSale;
 
     if (!query.keyword.isEmpty()) {
-        sql += " AND p.title LIKE ?";
-        vals << ("%" + query.keyword + "%");
+        sql += " AND (p.title LIKE ? OR p.description LIKE ?)";
+        vals << ("%" + query.keyword + "%") << ("%" + query.keyword + "%");
     }
 
     if (!query.categoryIds.isEmpty()) {
@@ -161,5 +161,24 @@ QVector<Product> ProductDao::findBySeller(int sellerId)
         return list;
     while (q.next())
         list.append(mapRow(q));
+    return list;
+}
+
+QVector<Category> ProductDao::categories()
+{
+    QSqlQuery q(DbManager::db());
+    q.prepare("SELECT id, name, IFNULL(parent_id, 0) AS parent_id FROM categories "
+              "ORDER BY CASE WHEN parent_id IS NULL THEN 0 ELSE 1 END, id");
+
+    QVector<Category> list;
+    if (!q.exec())
+        return list;
+    while (q.next()) {
+        Category c;
+        c.id = q.value("id").toInt();
+        c.name = q.value("name").toString();
+        c.parentId = q.value("parent_id").toInt();
+        list.append(c);
+    }
     return list;
 }
