@@ -57,7 +57,8 @@ private:
     // 五个页面
     SearchPage*     m_searchPage     = nullptr;
     MyProductsPage* m_myProductsPage = nullptr;
-    MyOrdersPage*   m_myOrdersPage   = nullptr;
+    MyOrdersPage*   m_myOrdersPage   = nullptr;   // 「我的订单」页里的「我买到的」标签
+    MyOrdersPage*   m_soldOrdersPage = nullptr;   // 「我的订单」页里的「我卖出的」标签
     TradeLogPage*   m_tradeLogPage   = nullptr;
     ImportPage*     m_importPage     = nullptr;
 

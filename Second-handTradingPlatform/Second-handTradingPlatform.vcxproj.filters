@@ -50,6 +50,9 @@
     <ClCompile Include="services\auth_service.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ui\pages\order\buy_dialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="data\db_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -68,10 +71,16 @@
     <ClCompile Include="ui\mainwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ui\pages\order\my_orders_page.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="ui\pages\product\my_products_page.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="data\order_dao.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\pages\order\order_detail_dialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="services\order_service.cpp">
@@ -109,6 +118,9 @@
     <CustomBuild Include="services\auth_service.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="ui\pages\order\buy_dialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <ClInclude Include="core\common\constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -139,6 +151,9 @@
     <CustomBuild Include="ui\mainwindow.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="ui\pages\order\my_orders_page.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="ui\pages\product\my_products_page.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -151,6 +166,9 @@
     <ClInclude Include="data\order_dao.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <CustomBuild Include="ui\pages\order\order_detail_dialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="services\order_service.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -204,6 +222,12 @@
     <ClCompile Include="release\moc_auth_service.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="debug\moc_buy_dialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_buy_dialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="debug\moc_import_page.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -228,10 +252,22 @@
     <ClCompile Include="release\moc_mainwindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="debug\moc_my_orders_page.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_my_orders_page.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="debug\moc_my_products_page.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_my_products_page.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_order_detail_dialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_order_detail_dialog.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_order_service.cpp">

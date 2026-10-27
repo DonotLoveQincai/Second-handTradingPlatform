@@ -5,9 +5,7 @@
 #include <QDate>
 #include <QDialog>
 #include <QHash>
-#include <QInputDialog>
 #include <QLabel>
-#include <QLineEdit>
 #include <QListWidget>
 #include <QMenu>
 #include <QMenuBar>
@@ -17,6 +15,7 @@
 #include <QSqlQuery>
 #include <QStackedWidget>
 #include <QStatusBar>
+#include <QTabWidget>
 #include <QVBoxLayout>
 #include <QWidget>
 
@@ -41,6 +40,8 @@
 #include "ui/pages/product/search_page.h"
 #include "ui/pages/product/my_products_page.h"
 #include "ui/pages/product/publish_dialog.h"
+#include "ui/pages/order/buy_dialog.h"
+#include "ui/pages/order/my_orders_page.h"
 #include "ui/pages/trade/trade_log_page.h"
 #include "ui/pages/import/import_page.h"
 
@@ -118,16 +119,25 @@ void MainWindow::buildUi()
         delete w;
     }
 
-    // 1) 造页面。m_myOrdersPage 是 B 的部分，还没合进 develop，先用占位页占位置。
+    // 1) 造页面（「我的订单」是 B 的页面，一页两标签：我买到的 / 我卖出的）
     m_searchPage     = new SearchPage(m_productService, this);
     m_myProductsPage = new MyProductsPage(m_productService, this);
     m_tradeLogPage   = new TradeLogPage(m_tradeService, this);
     m_importPage     = new ImportPage(m_importService, this);
 
+    // 用户 id 在构造时还不知道（登录在 main.cpp 里先做完再 new MainWindow 也是 0），
+    // 所以先传 0，等 setCurrentUser() 时再用 setUserId 补上。
+    m_myOrdersPage = new MyOrdersPage(m_orderService, m_tradeService, 0, false, this);
+    m_soldOrdersPage = new MyOrdersPage(m_orderService, m_tradeService, 0, true, this);
+
+    auto* ordersTab = new QTabWidget(this);
+    ordersTab->addTab(m_myOrdersPage,   QStringLiteral("我买到的"));
+    ordersTab->addTab(m_soldOrdersPage, QStringLiteral("我卖出的"));
+
     // 2) 按导航顺序放进 QStackedWidget（顺序必须和下面 addItem 一致！）
     ui->stackedWidget->addWidget(m_searchPage);
     ui->stackedWidget->addWidget(m_myProductsPage);
-    ui->stackedWidget->addWidget(makePlaceholder(QStringLiteral("我的订单")));
+    ui->stackedWidget->addWidget(ordersTab);
     ui->stackedWidget->addWidget(m_tradeLogPage);
     ui->stackedWidget->addWidget(m_importPage);
 
@@ -182,8 +192,8 @@ void MainWindow::onDataChanged()
     if (m_searchPage)     m_searchPage->refresh();
     if (m_myProductsPage) m_myProductsPage->refresh();
     if (m_tradeLogPage)   m_tradeLogPage->refresh();
-    // m_myOrdersPage 是 B 的页面类，还没合进 develop，这里先不刷（等它进来了再把下面这行打开）
-    // if (m_myOrdersPage) m_myOrdersPage->refresh();
+    if (m_myOrdersPage)   m_myOrdersPage->refresh();
+    if (m_soldOrdersPage) m_soldOrdersPage->refresh();
 }
 
 void MainWindow::onPublishRequested()
@@ -212,29 +222,13 @@ void MainWindow::onBuyRequested(int productId)
         return;
     }
 
-    // 临时版购买确认：B 的 BuyDialog 还没合进 develop。
-    // 这里走的仍然是 OrderService::createOrder（下单事务三步），
-    // B 的对话框合进来之后把这一段换成 BuyDialog 即可。
-    bool ok = false;
-    const QString remark = QInputDialog::getText(
-        this, QStringLiteral("确认购买"),
-        QStringLiteral("《%1》　¥%2\n卖家：%3\n\n备注（可留空）：")
-            .arg(p->title)
-            .arg(p->price, 0, 'f', 2)
-            .arg(p->sellerName),
-        QLineEdit::Normal, QString(), &ok);
-    if (!ok)
-        return;
+    // 购买确认框是 B 的 BuyDialog，下单仍然走 OrderService::createOrder（事务三步）
+    BuyDialog dlg(m_orderService, m_productService, productId,
+                  Session::instance().currentUser().id, this);
+    if (dlg.exec() != QDialog::Accepted)
+        return;   // 用户取消，或下单失败（对话框里已经弹过提示）
 
-    int orderId = 0;
-    const OpResult r = m_orderService->createOrder(
-        productId, Session::instance().currentUser().id, remark, &orderId);
-    if (!r.ok) {
-        QMessageBox::warning(this, QStringLiteral("下单失败"), r.message);
-        onDataChanged();
-        return;
-    }
-    statusBar()->showMessage(QStringLiteral("下单成功，订单 id = %1").arg(orderId), 3000);
+    statusBar()->showMessage(QStringLiteral("下单成功"), 3000);
     onDataChanged();
 }
 
@@ -250,8 +244,13 @@ void MainWindow::onLoginChanged()
 void MainWindow::setCurrentUser(const User& user)
 {
     Session::instance().setCurrentUser(user);
+
+    // 订单页构造时还不知道用户是谁，这里补上，否则查出来是空表
+    if (m_myOrdersPage)   m_myOrdersPage->setUserId(user.id);
+    if (m_soldOrdersPage) m_soldOrdersPage->setUserId(user.id);
+
     onLoginChanged();
-    onDataChanged();      // 登录后「我的商品」才有东西可查
+    onDataChanged();      // 登录后「我的商品」「我的订单」才有东西可查
 }
 
 // ---------------------------------------------------------------- 演示数据
