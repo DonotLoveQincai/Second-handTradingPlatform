@@ -101,9 +101,8 @@ OpResult TradeService::checkPermission(const Order& o, const QString& action, in
 
 QVector<TradeLog> TradeService::orderLogs(int orderId)
 {
-    TradeLogQuery q;
-    q.orderId = orderId;
-    return m_logRepo->search(q);   // 订单详情页用，只看这一单
+    // 订单详情页用：这一单的状态流转，按 id 正序（旧 → 新），时间线从上往下读
+    return m_logRepo->findByOrderId(orderId);
 }
 
 QVector<TradeLog> TradeService::queryLogs(const TradeLogQuery& q)
