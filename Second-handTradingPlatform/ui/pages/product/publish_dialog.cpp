@@ -12,6 +12,7 @@
 #include <QVBoxLayout>
 
 #include "services/product_service.h"
+#include "ui/pages/product/product_ui.h"
 
 PublishDialog::PublishDialog(ProductService* service, int sellerId, QWidget* parent)
     : QDialog(parent), m_service(service), m_sellerId(sellerId)
@@ -58,7 +59,7 @@ PublishDialog::PublishDialog(ProductService* service, int sellerId, QWidget* par
     box->button(QDialogButtonBox::Cancel)->setText("取消");
     root->addWidget(box);
 
-    QVector<CategoryNode> cats = m_service->categories();
+    QVector<CategoryItem> cats = allCategories();
     for (int i = 0; i < cats.size(); i++) {
         if (cats[i].parentId != 0)
             continue;

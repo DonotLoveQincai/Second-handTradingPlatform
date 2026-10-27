@@ -109,8 +109,3 @@ std::optional<Product> ProductService::find(int productId)
 {
     return m_repo->findById(productId);
 }
-
-QVector<CategoryNode> ProductService::categories()
-{
-    return m_repo->categories();
-}

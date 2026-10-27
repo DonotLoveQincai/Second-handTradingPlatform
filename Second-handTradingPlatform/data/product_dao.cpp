@@ -163,20 +163,3 @@ QVector<Product> ProductDao::findBySeller(int sellerId)
         list.append(mapRow(q));
     return list;
 }
-
-QVector<CategoryNode> ProductDao::categories()
-{
-    QSqlQuery q(DbManager::db());
-    q.exec("SELECT id, name, parent_id FROM categories "
-           "ORDER BY CASE WHEN parent_id IS NULL THEN 0 ELSE 1 END, id");
-
-    QVector<CategoryNode> list;
-    while (q.next()) {
-        CategoryNode n;
-        n.id = q.value(0).toInt();
-        n.name = q.value(1).toString();
-        n.parentId = q.value(2).isNull() ? 0 : q.value(2).toInt();
-        list.append(n);
-    }
-    return list;
-}

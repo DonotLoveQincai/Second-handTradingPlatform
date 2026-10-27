@@ -11,6 +11,7 @@
 #include "core/common/constants.h"
 #include "core/session.h"
 #include "services/product_service.h"
+#include "ui/pages/product/product_ui.h"
 #include "ui/pages/product/publish_dialog.h"
 
 MyProductsPage::MyProductsPage(ProductService* service, QWidget* parent)

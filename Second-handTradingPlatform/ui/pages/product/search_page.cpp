@@ -78,7 +78,7 @@ SearchPage::SearchPage(ProductService* service, QWidget* parent)
 
     m_catList->addItem("全部");
     m_catList->item(0)->setData(Qt::UserRole, 0);
-    m_cats = m_service->categories();
+    m_cats = allCategories();
     for (int i = 0; i < m_cats.size(); i++) {
         if (m_cats[i].parentId != 0)
             continue;

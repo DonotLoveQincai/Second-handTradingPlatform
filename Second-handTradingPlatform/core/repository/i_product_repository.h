@@ -8,16 +8,10 @@
 class IProductRepository {
 public:
     virtual ~IProductRepository() = default;
-
     virtual OpResult insert(Product& p) = 0;
-
     virtual OpResult updateStatus(int id, const QString& from, const QString& to) = 0;
-
     virtual OpResult updateInfo(const Product& p) = 0;
-
     virtual std::optional<Product> findById(int id) = 0;
     virtual QVector<Product> search(const ProductQuery& q) = 0;
     virtual QVector<Product> findBySeller(int sellerId) = 0;
-
-    virtual QVector<CategoryNode> categories() = 0;
 };

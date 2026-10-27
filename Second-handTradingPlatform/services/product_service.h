@@ -22,7 +22,6 @@ public:
     QVector<Product> search(const ProductQuery& q);
     QVector<Product> myProducts(int sellerId);
     std::optional<Product> find(int productId);
-    QVector<CategoryNode> categories();
 
 signals:
     void productsChanged();
