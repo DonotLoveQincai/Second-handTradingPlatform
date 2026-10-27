@@ -121,6 +121,9 @@
     <CustomBuild Include="ui\pages\order\buy_dialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <ClInclude Include="core\entity\category.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="core\common\constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>

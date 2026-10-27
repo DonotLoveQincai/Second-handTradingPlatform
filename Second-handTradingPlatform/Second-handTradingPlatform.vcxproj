@@ -183,6 +183,7 @@
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC ui/pages/order/buy_dialog.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_buy_dialog.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <ClInclude Include="core\entity\category.h" />
     <ClInclude Include="core\common\constants.h" />
     <ClInclude Include="data\db_manager.h" />
     <ClInclude Include="core\repository\i_order_repository.h" />
