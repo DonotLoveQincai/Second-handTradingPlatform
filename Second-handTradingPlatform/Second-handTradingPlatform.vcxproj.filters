@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Form Files">
@@ -100,9 +100,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="services\auth_service.h">
+    <CustomBuild Include="services\auth_service.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
+    </CustomBuild>
     <ClInclude Include="core\common\constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -121,15 +121,15 @@
     <ClInclude Include="core\repository\i_user_repository.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <QtMoc Include="ui\pages\auth\login_dialog.h">
+    <CustomBuild Include="ui\pages\auth\login_dialog.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="ui\mainwindow.h">
+    </CustomBuild>
+    <CustomBuild Include="ui\mainwindow.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="ui\pages\product\my_products_page.h">
+    </CustomBuild>
+    <CustomBuild Include="ui\pages\product\my_products_page.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
+    </CustomBuild>
     <ClInclude Include="core\common\opresult.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -139,27 +139,27 @@
     <ClInclude Include="data\order_dao.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <QtMoc Include="services\order_service.h">
+    <CustomBuild Include="services\order_service.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
+    </CustomBuild>
     <ClInclude Include="core\entity\product.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <QtMoc Include="data\product_dao.h">
+    <CustomBuild Include="data\product_dao.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="services\product_service.h">
+    </CustomBuild>
+    <CustomBuild Include="services\product_service.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
+    </CustomBuild>
     <ClInclude Include="ui\pages\product\product_ui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <QtMoc Include="ui\pages\product\publish_dialog.h">
+    <CustomBuild Include="ui\pages\product\publish_dialog.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="ui\pages\product\search_page.h">
+    </CustomBuild>
+    <CustomBuild Include="ui\pages\product\search_page.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
+    </CustomBuild>
     <ClInclude Include="core\session.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -169,12 +169,12 @@
     <ClInclude Include="data\trade_log_dao.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <QtMoc Include="ui\pages\trade\trade_log_page.h">
+    <CustomBuild Include="ui\pages\trade\trade_log_page.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="services\trade_service.h">
+    </CustomBuild>
+    <CustomBuild Include="services\trade_service.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
+    </CustomBuild>
     <ClInclude Include="services\trade_state_machine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -186,24 +186,99 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="debug\moc_auth_service.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_auth_service.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_login_dialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_login_dialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_mainwindow.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_mainwindow.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_my_products_page.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_my_products_page.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_order_service.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_order_service.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
+    <ClCompile Include="debug\moc_product_dao.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_product_dao.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_product_service.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_product_service.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_publish_dialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_publish_dialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_search_page.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_search_page.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_trade_log_page.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_trade_log_page.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_trade_service.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_trade_service.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\qrc_resources.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\qrc_resources.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClInclude Include="ui_mainwindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="ui\mainwindow.ui">
+    <CustomBuild Include="ui\mainwindow.ui">
       <Filter>Form Files</Filter>
-    </QtUic>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <None Include="sql\001_init.sql">
       <Filter>Resource Files</Filter>
     </None>
-    <QtRcc Include="ui\resources\resources.qrc">
+    <CustomBuild Include="ui\resources\resources.qrc">
       <Filter>Resource Files</Filter>
-    </QtRcc>
+    </CustomBuild>
   </ItemGroup>
 </Project>
