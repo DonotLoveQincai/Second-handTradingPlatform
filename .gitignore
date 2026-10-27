@@ -37,6 +37,7 @@ logs/
 *.db-journal
 *.db-wal
 *.db-shm
+*.log
 
 # ---- 系统 ----
 Thumbs.db

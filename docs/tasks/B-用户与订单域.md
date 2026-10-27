@@ -321,6 +321,13 @@ return OpResult::success(QString::number(o.id));
 
 **注意**：DAO 一律不开事务，事务只在这里和 C 的 `changeStatus` 里开。
 
+**两条失败提示各自在什么情况下出现**（别混，验收项写错了会误判成 bug）：
+
+| 提示 | 在哪一行 | 什么时候真的出现 |
+| --- | --- | --- |
+| `该商品已售出或已下架` | 事务外的前置检查（上面前三行） | 商品在**打开购买框之前**就已经不是 `ON_SALE` 了。单机单用户下，同一商品连点两次第二次走的就是这一条（第二次进来时商品已被第一次置成 `SOLD`） |
+| `该商品刚刚被买走了，请刷新` | 事务内第 ② 步条件更新失败 | 前置检查通过、但 `UPDATE ... WHERE status='ON_SALE'` 没改到行。单机同步执行时**几乎不可能**触发，它的作用是兜住"检查与更新之间被另一个连接抢先改掉"的竞态（比如两个程序实例同时开着 demo 库）。属于防御性代码，不是主路径 |
+
 ### 5.5 `OrderService::queryOrders`
 
 `return m_orderRepo->search(q);` —— 买到的传 `buyerId`，卖出的传 `sellerId`。
@@ -476,7 +483,7 @@ connect(m_orderService, &OrderService::orderCreated, this, &MainWindow::onDataCh
 - [ ] 密码输错、用户名不存在，都提示同一句「用户名或密码错误」。
 - [ ] 登录后 `/data/app.db` 的 `users` 表里 `password_hash` 是 64 位十六进制、`salt` 非空（不是明文）。
 - [ ] 下单成功：`orders` 多一行（`order_no` 形如 `20261027-0001`、`status=PENDING_PAY`、`amount` 等于商品价）、`products.status` 变 `SOLD`、`trade_log` 多一行（`from_status` 为空、`action=CREATE`）。
-- [ ] 对同一商品连点两次「确认购买」：第二次提示「该商品刚刚被买走了，请刷新」，且只产生一条订单。
+- [ ] 对同一商品连点两次「确认购买」：第二次提示「该商品已售出或已下架」（走的是 5.4 的前置检查），且 `orders` 里只有一条记录。
 - [ ] 用自己的号买自己的商品：提示「不能购买自己发布的商品」。
 - [ ] 「我买到的」与「我卖出的」两个页面看到的是同一张订单的两个视角，状态一致。
 - [ ] 订单详情里日志顺序就是从下到上依次「下单 → 付款 → 发货 → 确认收货」。
@@ -490,7 +497,7 @@ connect(m_orderService, &OrderService::orderCreated, this, &MainWindow::onDataCh
 | `LNK2019 无法解析的外部符号` | 新增 `.cpp` 没进工程 | 重新 `Open Qt Project File (.pro)` |
 | `C2039 "toVariant" 不是 QVariant 的成员` | 抄了不存在的写法 | 用 `.toString()` / `.toInt()` |
 | 下单后商品还是「在售」 | 事务里漏了第 ② 步，或漏了 `commit()` | 按 5.4 三步顺序 + commit |
-| 连点两次生成两单 | 用了无条件 `UPDATE products SET status='SOLD'` | 必须走条件更新并检查 `numRowsAffected()` |
+| 连点两次生成两单 | 用了无条件 `UPDATE products SET status='SOLD'` | 必须走条件更新并检查 `numRowsAffected()`；前置检查拦得住第二次点击，条件更新兜住并发 |
 | 订单号重复报 `UNIQUE constraint failed` | `nextOrderNo()` 在事务外算 | 必须在事务内、`insert` 之前算 |
 | 订单详情页按钮点了没反应 | `actionsFor` 返回的码直接当文字用了 | 文字用 `actionName(a)`，码传给 `changeStatus` |
 | 登录后页面还是空的 | 没接 `loginSucceeded` 或没调 `refresh()` | 页面必须有公开 `refresh()` |
