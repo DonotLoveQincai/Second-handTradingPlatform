@@ -2,8 +2,8 @@
 #include <QWidget>
 #include <QVector>
 
+#include "core/entity/category.h"
 #include "core/entity/product.h"
-#include "ui/pages/product/product_ui.h"
 
 class QComboBox;
 class QDoubleSpinBox;
@@ -39,6 +39,5 @@ private:
     QComboBox* m_sort = nullptr;
     QTableWidget* m_table = nullptr;
     QLabel* m_count = nullptr;
-    QVector<CategoryItem> m_cats;
-    QVector<Product> m_list;
+    QVector<Category> m_cats;
 };
